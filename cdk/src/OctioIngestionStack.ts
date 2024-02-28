@@ -16,6 +16,7 @@ import { Construct } from "constructs";
 import path from "path";
 import { Rule, Schedule } from "aws-cdk-lib/aws-events";
 import * as targets from "aws-cdk-lib/aws-events-targets";
+import env from "./env";
 
 const ALARM_TOPIC = "arn:aws:sns:us-east-1:858777967843:general-alarms";
 
@@ -43,6 +44,11 @@ export default class OctioIngestionStack extends Stack {
       memorySize: 1024,
       environment: {
         DATA_TABLE: dataTable.tableName,
+        OCTOPUS_API_KEY: env.OCTOPUS_API_KEY,
+        OCTOPUS_ELECTRICTY_MPAN: env.OCTOPUS_ELECTRICTY_MPAN,
+        OCTOPUS_ELECTRICITY_SERIAL: env.OCTOPUS_ELECTRICITY_SERIAL,
+        OCTOPUS_GAS_MPRN: env.OCTOPUS_GAS_MPRN,
+        OCTOPUS_GAS_SERIAL: env.OCTOPUS_GAS_SERIAL,
       },
     });
 
