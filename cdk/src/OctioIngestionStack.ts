@@ -45,9 +45,9 @@ export default class OctioIngestionStack extends Stack {
         DATA_TABLE: dataTable.tableName,
       },
     });
-    
+
     // Schedule the function to run every 6 hours
-    new Rule(this, 'ScheduleRule', {
+    new Rule(this, "ScheduleRule", {
       schedule: Schedule.rate(Duration.hours(6)),
       targets: [new targets.LambdaFunction(this.ingestionFunction)],
     });
