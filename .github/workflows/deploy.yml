@@ -26,3 +26,9 @@ jobs:
       - run: yarn build
       - run: yarn format:check
       - run: yarn deploy
+        env:
+          OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_KEY }}
+          OCTOPUS_ELECTRICITY_MPAN: ${{ secrets.OCTOPUS_ELECTRICITY_MPAN }}
+          OCTOPUS_ELECTRICITY_SERIAL: ${{ secrets.OCTOPUS_ELECTRICITY_SERIAL }}
+          OCTOPUS_GAS_MPRN: ${{ secrets.OCTOPUS_GAS_MPRN }}
+          OCTOPUS_GAS_SERIAL: ${{ secrets.OCTOPUS_GAS_SERIAL }}
