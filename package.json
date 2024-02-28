@@ -1,0 +1,14 @@
+{
+  "name": "@mattb.tech/octio",
+  "private": true,
+  "workspaces": [
+    "ingestion",
+    "cdk"
+  ],
+  "scripts": {
+    "deploy": "yarn workspace @mattb.tech/octio-cdk run deploy",
+    "build": "yarn workspaces run build",
+    "format": "yarn workspaces run format",
+    "format:check": "yarn workspace @mattb.tech/octio-cdk run format:check"
+  }
+}
