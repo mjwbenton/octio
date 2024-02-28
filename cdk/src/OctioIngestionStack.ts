@@ -31,7 +31,7 @@ export default class OctioIngestionStack extends Stack {
       entry: path.join(__dirname, "../../ingestion/dist/index.js"),
       handler: "handler",
       bundling: {
-        target: "es2023",
+        target: "node20",
         environment: {
           NODE_ENV: "production",
         },
