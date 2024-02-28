@@ -14,6 +14,8 @@ import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Topic } from "aws-cdk-lib/aws-sns";
 import { Construct } from "constructs";
 import path from "path";
+import { Rule, Schedule } from "aws-cdk-lib/aws-events";
+import * as targets from "aws-cdk-lib/aws-events-targets";
 
 const ALARM_TOPIC = "arn:aws:sns:us-east-1:858777967843:general-alarms";
 
@@ -43,25 +45,18 @@ export default class OctioIngestionStack extends Stack {
         DATA_TABLE: dataTable.tableName,
       },
     });
+    
+    // Schedule the function to run every 6 hours
+    new Rule(this, 'ScheduleRule', {
+      schedule: Schedule.rate(Duration.hours(6)),
+      targets: [new targets.LambdaFunction(this.ingestionFunction)],
+    });
 
     dataTable.grantReadWriteData(this.ingestionFunction);
 
     const alarmAction = new SnsAction(
       Topic.fromTopicArn(this, "AlarmTopic", ALARM_TOPIC),
     );
-
-    this.ingestionFunction
-      .metricInvocations({
-        period: Duration.hours(6),
-        statistic: "Sum",
-      })
-      .createAlarm(this, "RunningAlarm", {
-        threshold: 1,
-        comparisonOperator: ComparisonOperator.LESS_THAN_THRESHOLD,
-        evaluationPeriods: 4,
-        treatMissingData: TreatMissingData.BREACHING,
-      })
-      .addAlarmAction(alarmAction);
 
     this.ingestionFunction
       .metricErrors()
