@@ -1,6 +1,6 @@
 import env from "./env";
 
-const ELECTRICITY_ENDPOINT = `https://api.octopus.energy/v1/electricity-meter-points/${env.OCTOPUS_ELECTRICTY_MPAN}/meters/${env.OCTOPUS_ELECTRICITY_SERIAL}/consumption/`;
+const ELECTRICITY_ENDPOINT = `https://api.octopus.energy/v1/electricity-meter-points/${env.OCTOPUS_ELECTRICITY_MPAN}/meters/${env.OCTOPUS_ELECTRICITY_SERIAL}/consumption/`;
 const GAS_ENDPOINT = `https://api.octopus.energy/v1/gas-meter-points/${env.OCTOPUS_GAS_MPRN}/meters/${env.OCTOPUS_GAS_SERIAL}/consumption/`;
 
 const HEADERS = {

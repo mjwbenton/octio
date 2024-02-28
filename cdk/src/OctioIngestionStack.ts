@@ -45,7 +45,7 @@ export default class OctioIngestionStack extends Stack {
       environment: {
         DATA_TABLE: dataTable.tableName,
         OCTOPUS_API_KEY: env.OCTOPUS_API_KEY,
-        OCTOPUS_ELECTRICTY_MPAN: env.OCTOPUS_ELECTRICTY_MPAN,
+        OCTOPUS_ELECTRICITY_MPAN: env.OCTOPUS_ELECTRICITY_MPAN,
         OCTOPUS_ELECTRICITY_SERIAL: env.OCTOPUS_ELECTRICITY_SERIAL,
         OCTOPUS_GAS_MPRN: env.OCTOPUS_GAS_MPRN,
         OCTOPUS_GAS_SERIAL: env.OCTOPUS_GAS_SERIAL,
