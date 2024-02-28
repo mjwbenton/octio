@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
+    "deploy": "cdk deploy --require-approval never",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "format:check": "prettier --check \"src/**/*.ts\""
