@@ -13,8 +13,8 @@ export default class OctioDataStack extends Stack {
   constructor(scope: Construct, id: string) {
     super(scope, id);
     this.dataTable = new Table(this, "DataTable", {
-      partitionKey: { name: "metric", type: AttributeType.STRING },
-      sortKey: { name: "date", type: AttributeType.STRING },
+      partitionKey: { name: "energyType", type: AttributeType.STRING },
+      sortKey: { name: "startDate", type: AttributeType.STRING },
       billingMode: BillingMode.PAY_PER_REQUEST,
       pointInTimeRecovery: true,
     });
