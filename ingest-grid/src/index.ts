@@ -71,6 +71,7 @@ async function writeData(data: Array<InputDataType>) {
           }),
         );
       } catch (e) {
+        console.error(e);
         throw new Error(`Failed on data: ${JSON.stringify(batch, null, 2)}`);
       }
     }),
