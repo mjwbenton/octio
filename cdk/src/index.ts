@@ -6,4 +6,5 @@ const app = new App();
 const dataStack = new OctioDataStack(app, "OctioData");
 new OctioIngestionStack(app, "OctioIngestion", {
   dataTable: dataStack.dataTable,
+  gridTable: dataStack.gridTable,
 });
