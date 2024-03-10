@@ -34,7 +34,7 @@ export async function handler() {
     `https://api.carbonintensity.org.uk/regional/intensity/${from}/${to}/postcode/BS3`,
     {
       headers: HEADERS,
-    }
+    },
   );
   const result = (await response.json()) as {
     data: { data: Array<InputDataType> };
@@ -68,11 +68,11 @@ async function writeData(data: Array<InputDataType>) {
                 },
               })),
             },
-          })
+          }),
         );
       } catch (e) {
         throw new Error(`Failed on data: ${JSON.stringify(batch, null, 2)}`);
       }
-    })
+    }),
   );
 }

@@ -51,7 +51,7 @@ async function importType(type: EnergyTypeKey) {
 
 async function writeData(
   energyType: EnergyTypeKey,
-  data: Array<InputDataType>
+  data: Array<InputDataType>,
 ) {
   return Promise.all(
     chunk(data, CHUNK_SIZE).map(async (batch) => {
@@ -70,17 +70,17 @@ async function writeData(
                 },
               })),
             },
-          })
+          }),
         );
       } catch (e) {
         throw new Error(
           `Failed on chunk containing ${energyType} data: ${JSON.stringify(
             batch,
             null,
-            2
-          )}`
+            2,
+          )}`,
         );
       }
-    })
+    }),
   );
 }
