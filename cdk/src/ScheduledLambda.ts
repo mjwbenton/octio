@@ -30,7 +30,7 @@ export default class ScheduledLambda extends Construct {
     }: {
       environment: Record<string, string>;
       entry: string;
-    }
+    },
   ) {
     super(scope, id);
 
@@ -55,7 +55,7 @@ export default class ScheduledLambda extends Construct {
     });
 
     const alarmAction = new SnsAction(
-      Topic.fromTopicArn(this, "AlarmTopic", ALARM_TOPIC)
+      Topic.fromTopicArn(this, "AlarmTopic", ALARM_TOPIC),
     );
 
     this.lambda
