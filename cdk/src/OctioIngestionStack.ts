@@ -9,7 +9,7 @@ export default class OctioIngestionStack extends Stack {
   constructor(
     scope: Construct,
     id: string,
-    { dataTable, gridTable }: { dataTable: ITable; gridTable: ITable }
+    { dataTable, gridTable }: { dataTable: ITable; gridTable: ITable },
   ) {
     super(scope, id);
 
@@ -26,7 +26,7 @@ export default class OctioIngestionStack extends Stack {
           OCTOPUS_GAS_MPRN: env.OCTOPUS_GAS_MPRN,
           OCTOPUS_GAS_SERIAL: env.OCTOPUS_GAS_SERIAL,
         },
-      }
+      },
     );
 
     dataTable.grantReadWriteData(ingestConsumptionLambda.lambda);
