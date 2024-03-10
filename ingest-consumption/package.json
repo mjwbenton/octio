@@ -1,5 +1,5 @@
 {
-  "name": "@mattb.tech/octio-ingestion",
+  "name": "@mattb.tech/octio-ingest-consumption",
   "private": true,
   "version": "1.0.0",
   "main": "src/index.ts",

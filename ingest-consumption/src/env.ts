@@ -6,6 +6,7 @@ const env = cleanEnv(process.env, {
   OCTOPUS_ELECTRICITY_SERIAL: str(),
   OCTOPUS_GAS_MPRN: str(),
   OCTOPUS_GAS_SERIAL: str(),
+  DATA_TABLE: str(),
 });
 
 export default env;

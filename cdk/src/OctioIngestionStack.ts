@@ -31,7 +31,7 @@ export default class OctioIngestionStack extends Stack {
     super(scope, id);
 
     this.ingestionFunction = new NodejsFunction(this, "Lambda", {
-      entry: path.join(__dirname, "../../ingestion/dist/index.js"),
+      entry: path.join(__dirname, "../../ingest-consumption/dist/index.js"),
       handler: "handler",
       bundling: {
         target: "node20",

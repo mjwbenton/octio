@@ -3,12 +3,7 @@ import {
   DynamoDBClient,
 } from "@aws-sdk/client-dynamodb";
 import env from "./env";
-import { cleanEnv, str } from "envalid";
 import chunk from "lodash.chunk";
-
-const { DATA_TABLE } = cleanEnv(process.env, {
-  DATA_TABLE: str(),
-});
 
 const DYNAMO_CLIENT = new DynamoDBClient({});
 const CHUNK_SIZE = 25;
@@ -64,7 +59,7 @@ async function writeData(
         return await DYNAMO_CLIENT.send(
           new BatchWriteItemCommand({
             RequestItems: {
-              [DATA_TABLE]: batch.map((item) => ({
+              [env.DATA_TABLE]: batch.map((item) => ({
                 PutRequest: {
                   Item: {
                     energyType: { S: energyType },
