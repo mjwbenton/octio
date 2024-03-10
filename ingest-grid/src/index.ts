@@ -7,7 +7,7 @@ import chunk from "lodash.chunk";
 import { formatISO } from "date-fns/formatISO";
 import { subDays } from "date-fns/subDays";
 
-const PARTITION = "x";
+const POSTCODE = "BS3";
 const DYNAMO_CLIENT = new DynamoDBClient({});
 const CHUNK_SIZE = 25;
 
@@ -31,7 +31,7 @@ export async function handler() {
   const from = formatISO(subDays(new Date(), 1));
   const to = formatISO(new Date());
   const response = await fetch(
-    `https://api.carbonintensity.org.uk/regional/intensity/${from}/${to}/postcode/BS3`,
+    `https://api.carbonintensity.org.uk/regional/intensity/${from}/${to}/postcode/${POSTCODE}`,
     {
       headers: HEADERS,
     },
@@ -52,7 +52,7 @@ async function writeData(data: Array<InputDataType>) {
               [env.GRID_TABLE]: batch.map((item) => ({
                 PutRequest: {
                   Item: {
-                    partitionKey: { S: PARTITION },
+                    postcode: { S: POSTCODE },
                     startDate: { S: item.from },
                     endDate: { S: item.to },
                     intensity: { N: item.intensity.forecast.toString() },
