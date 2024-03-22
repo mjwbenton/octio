@@ -14,7 +14,7 @@ import { generateAllThirtyMinutePeriodsBetween } from "./generatePeriods";
 const typeDefs = gql`
   scalar DateTime
 
-  extend type Query {
+  type Query {
     energy(startDate: DateTime!, endDate: DateTime!): [EnergyPeriod!]!
   }
 
