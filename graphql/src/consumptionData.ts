@@ -13,7 +13,7 @@ interface DataPoint {
   consumption: number;
 }
 
-export async function getMeterReadings(
+export async function getConsumptionData(
   energyType: EnergyType,
   startDate: Date,
   endDate: Date,

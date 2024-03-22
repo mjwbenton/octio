@@ -7,9 +7,10 @@ import { Resolvers } from "./generated/graphql";
 import { buildSubgraphSchema } from "@apollo/subgraph";
 import gql from "graphql-tag";
 import { DateTimeResolver } from "graphql-scalars";
-import { getMeterReadings } from "./data";
+import { getConsumptionData } from "./consumptionData";
 import { EnergyType } from "./energyType";
 import { addMinutes } from "date-fns/addMinutes";
+import { generateAllThirtyMinutePeriodsBetween } from "./generatePeriods";
 
 const typeDefs = gql`
   extend schema
@@ -42,26 +43,13 @@ const typeDefs = gql`
   }
 `;
 
-function generateAllThirtyMinutePeriodsBetween(
-  startDate: Date,
-  endDate: Date,
-): Array<Date> {
-  const periods = [];
-  let currentPeriod = startDate;
-  while (currentPeriod < endDate) {
-    periods.push(currentPeriod);
-    currentPeriod = addMinutes(currentPeriod, 30);
-  }
-  return periods;
-}
-
 const resolvers: Resolvers = {
   DateTime: DateTimeResolver,
   Query: {
     energy: async (_: {}, { startDate, endDate }) => {
       const [electricityData, gasData] = await Promise.all([
-        getMeterReadings(EnergyType.ELECTRICITY, startDate, endDate),
-        getMeterReadings(EnergyType.GAS, startDate, endDate),
+        getConsumptionData(EnergyType.ELECTRICITY, startDate, endDate),
+        getConsumptionData(EnergyType.GAS, startDate, endDate),
       ]);
       const electricityLookup = new Map(
         electricityData.map((data) => [data.startDate, data]),
