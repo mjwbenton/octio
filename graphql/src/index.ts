@@ -24,12 +24,20 @@ const typeDefs = gql`
   scalar DateTime
 
   extend type Query {
-    energy(startDate: DateTime!, endDate: DateTime!): [EnergyPeriod!]!
+    energy(startDate: DateTime!, endDate: DateTime!): EnergyResult!
+  }
+
+  type EnergyResult {
+    startDate: DateTime!
+    endDate: DateTime!
+    gas: GasPoint!
+    electricity: ElectricityPoint!
+    periods: [EnergyPeriod!]!
   }
 
   type EnergyPeriod {
-    startTime: DateTime!
-    endTime: DateTime!
+    startDate: DateTime!
+    endDate: DateTime!
     gas: GasPoint!
     electricity: ElectricityPoint!
   }
@@ -58,33 +66,57 @@ const resolvers: Resolvers = {
       const electricityLookup = new Map(
         electricityData.map((data) => [formatISO(data.startDate), data]),
       );
-      const gasLookup = new Map(gasData.map((data) => [formatISO(data.startDate), data]));
+      const gasLookup = new Map(
+        gasData.map((data) => [formatISO(data.startDate), data]),
+      );
       const gridLookup = new Map(
         gridData.map((data) => [formatISO(data.startDate), data]),
       );
-      return generateAllThirtyMinutePeriodsBetween(startDate, endDate).map(
-        (startTime) => {
-          const electricity = electricityLookup.get(formatISO(startTime));
-          const gas = gasLookup.get(formatISO(startTime));
-          const grid = gridLookup.get(formatISO(startTime));
-          return {
-            startTime,
-            endTime: addMinutes(startTime, 30),
-            electricity: {
-              usage: electricity?.consumption ?? 0,
-              emissions:
-                Math.round(
-                  (grid?.intensity ?? 0) * (electricity?.consumption ?? 0),
-                ) / 1000, // kgCo2e
-              missingData: electricity === undefined || grid === undefined,
-            },
-            gas: {
-              usage: gas?.consumption ?? 0,
-              missingData: gas === undefined,
-            },
-          };
+      const periods = generateAllThirtyMinutePeriodsBetween(
+        startDate,
+        endDate,
+      ).map((startDate) => {
+        const electricity = electricityLookup.get(formatISO(startDate));
+        const gas = gasLookup.get(formatISO(startDate));
+        const grid = gridLookup.get(formatISO(startDate));
+        return {
+          startDate,
+          endDate: addMinutes(startDate, 30),
+          electricity: {
+            usage: electricity?.consumption ?? 0,
+            emissions:
+              Math.round(
+                (grid?.intensity ?? 0) * (electricity?.consumption ?? 0),
+              ) / 1000, // kgCo2e
+            missingData: electricity === undefined || grid === undefined,
+          },
+          gas: {
+            usage: gas?.consumption ?? 0,
+            missingData: gas === undefined,
+          },
+        };
+      });
+      const totals = periods.reduce(
+        (acc, period) => {
+          acc.electricity.usage += period.electricity.usage;
+          acc.electricity.emissions += period.electricity.emissions;
+          acc.electricity.missingData =
+            acc.electricity.missingData || period.electricity.missingData;
+          acc.gas.usage += period.gas.usage;
+          acc.gas.missingData = acc.gas.missingData || period.gas.missingData;
+          return acc;
+        },
+        {
+          gas: { usage: 0, missingData: false },
+          electricity: { usage: 0, emissions: 0, missingData: false },
         },
       );
+      return {
+        startDate,
+        endDate,
+        ...totals,
+        periods,
+      };
     },
   },
 };

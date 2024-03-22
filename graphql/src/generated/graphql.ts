@@ -38,22 +38,33 @@ export type Scalars = {
 };
 
 export type ElectricityPoint = {
+  emissions: Scalars["Float"]["output"];
+  missingData: Scalars["Boolean"]["output"];
   usage: Scalars["Float"]["output"];
 };
 
 export type EnergyPeriod = {
   electricity: ElectricityPoint;
-  endTime: Scalars["DateTime"]["output"];
+  endDate: Scalars["DateTime"]["output"];
   gas: GasPoint;
-  startTime: Scalars["DateTime"]["output"];
+  startDate: Scalars["DateTime"]["output"];
+};
+
+export type EnergyResult = {
+  electricity: ElectricityPoint;
+  endDate: Scalars["DateTime"]["output"];
+  gas: GasPoint;
+  periods: Array<EnergyPeriod>;
+  startDate: Scalars["DateTime"]["output"];
 };
 
 export type GasPoint = {
+  missingData: Scalars["Boolean"]["output"];
   usage: Scalars["Float"]["output"];
 };
 
 export type Query = {
-  energy: Array<EnergyPeriod>;
+  energy: EnergyResult;
 };
 
 export type QueryEnergyArgs = {
@@ -174,10 +185,11 @@ export type ResolversTypes = ResolversObject<{
   DateTime: ResolverTypeWrapper<Scalars["DateTime"]["output"]>;
   ElectricityPoint: ResolverTypeWrapper<ElectricityPoint>;
   Float: ResolverTypeWrapper<Scalars["Float"]["output"]>;
+  Boolean: ResolverTypeWrapper<Scalars["Boolean"]["output"]>;
   EnergyPeriod: ResolverTypeWrapper<EnergyPeriod>;
+  EnergyResult: ResolverTypeWrapper<EnergyResult>;
   GasPoint: ResolverTypeWrapper<GasPoint>;
   Query: ResolverTypeWrapper<{}>;
-  Boolean: ResolverTypeWrapper<Scalars["Boolean"]["output"]>;
   String: ResolverTypeWrapper<Scalars["String"]["output"]>;
 }>;
 
@@ -186,10 +198,11 @@ export type ResolversParentTypes = ResolversObject<{
   DateTime: Scalars["DateTime"]["output"];
   ElectricityPoint: ElectricityPoint;
   Float: Scalars["Float"]["output"];
+  Boolean: Scalars["Boolean"]["output"];
   EnergyPeriod: EnergyPeriod;
+  EnergyResult: EnergyResult;
   GasPoint: GasPoint;
   Query: {};
-  Boolean: Scalars["Boolean"]["output"];
   String: Scalars["String"]["output"];
 }>;
 
@@ -203,6 +216,8 @@ export type ElectricityPointResolvers<
   ParentType extends
     ResolversParentTypes["ElectricityPoint"] = ResolversParentTypes["ElectricityPoint"],
 > = ResolversObject<{
+  emissions?: Resolver<ResolversTypes["Float"], ParentType, ContextType>;
+  missingData?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
   usage?: Resolver<ResolversTypes["Float"], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
@@ -217,9 +232,30 @@ export type EnergyPeriodResolvers<
     ParentType,
     ContextType
   >;
-  endTime?: Resolver<ResolversTypes["DateTime"], ParentType, ContextType>;
+  endDate?: Resolver<ResolversTypes["DateTime"], ParentType, ContextType>;
   gas?: Resolver<ResolversTypes["GasPoint"], ParentType, ContextType>;
-  startTime?: Resolver<ResolversTypes["DateTime"], ParentType, ContextType>;
+  startDate?: Resolver<ResolversTypes["DateTime"], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type EnergyResultResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes["EnergyResult"] = ResolversParentTypes["EnergyResult"],
+> = ResolversObject<{
+  electricity?: Resolver<
+    ResolversTypes["ElectricityPoint"],
+    ParentType,
+    ContextType
+  >;
+  endDate?: Resolver<ResolversTypes["DateTime"], ParentType, ContextType>;
+  gas?: Resolver<ResolversTypes["GasPoint"], ParentType, ContextType>;
+  periods?: Resolver<
+    Array<ResolversTypes["EnergyPeriod"]>,
+    ParentType,
+    ContextType
+  >;
+  startDate?: Resolver<ResolversTypes["DateTime"], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -228,6 +264,7 @@ export type GasPointResolvers<
   ParentType extends
     ResolversParentTypes["GasPoint"] = ResolversParentTypes["GasPoint"],
 > = ResolversObject<{
+  missingData?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
   usage?: Resolver<ResolversTypes["Float"], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
@@ -238,7 +275,7 @@ export type QueryResolvers<
     ResolversParentTypes["Query"] = ResolversParentTypes["Query"],
 > = ResolversObject<{
   energy?: Resolver<
-    Array<ResolversTypes["EnergyPeriod"]>,
+    ResolversTypes["EnergyResult"],
     ParentType,
     ContextType,
     RequireFields<QueryEnergyArgs, "endDate" | "startDate">
@@ -249,6 +286,7 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   DateTime?: GraphQLScalarType;
   ElectricityPoint?: ElectricityPointResolvers<ContextType>;
   EnergyPeriod?: EnergyPeriodResolvers<ContextType>;
+  EnergyResult?: EnergyResultResolvers<ContextType>;
   GasPoint?: GasPointResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
 }>;
