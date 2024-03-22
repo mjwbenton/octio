@@ -2,6 +2,7 @@
   "name": "@mattb.tech/octio",
   "private": true,
   "workspaces": [
+    "graphql",
     "ingest-consumption",
     "ingest-grid",
     "cdk"

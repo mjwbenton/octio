@@ -1,0 +1,32 @@
+{
+  "name": "@mattb.tech/octio-graphql",
+  "private": true,
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "codegen": "graphql-codegen --config codegen.yml"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/typescript": "^4.0.6",
+    "@graphql-codegen/typescript-resolvers": "^4.0.6",
+    "@tsconfig/node20": "^20.1.2",
+    "@types/node": "^20.11.21",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.10.1",
+    "@apollo/subgraph": "^2.7.2",
+    "@as-integrations/aws-lambda": "^3.1.0",
+    "@aws-sdk/client-dynamodb": "^3.521.0",
+    "date-fns": "^3.3.1",
+    "envalid": "^8.0.0",
+    "graphql": "^16.8.1",
+    "graphql-scalars": "^1.23.0",
+    "graphql-tag": "^2.12.6"
+  }
+}
