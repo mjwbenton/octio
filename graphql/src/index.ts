@@ -12,6 +12,7 @@ import { EnergyType } from "./energyType";
 import { addMinutes } from "date-fns/addMinutes";
 import { generateAllThirtyMinutePeriodsBetween } from "./generatePeriods";
 import { getGridData } from "./gridData";
+import { formatISO } from "date-fns/formatISO";
 
 const typeDefs = gql`
   extend schema
@@ -55,17 +56,17 @@ const resolvers: Resolvers = {
         getGridData(startDate, endDate),
       ]);
       const electricityLookup = new Map(
-        electricityData.map((data) => [data.startDate, data]),
+        electricityData.map((data) => [formatISO(data.startDate), data]),
       );
-      const gasLookup = new Map(gasData.map((data) => [data.startDate, data]));
+      const gasLookup = new Map(gasData.map((data) => [formatISO(data.startDate), data]));
       const gridLookup = new Map(
-        gridData.map((data) => [data.startDate, data]),
+        gridData.map((data) => [formatISO(data.startDate), data]),
       );
       return generateAllThirtyMinutePeriodsBetween(startDate, endDate).map(
         (startTime) => {
-          const electricity = electricityLookup.get(startTime);
-          const gas = gasLookup.get(startTime);
-          const grid = gridLookup.get(startTime);
+          const electricity = electricityLookup.get(formatISO(startTime));
+          const gas = gasLookup.get(formatISO(startTime));
+          const grid = gridLookup.get(formatISO(startTime));
           return {
             startTime,
             endTime: addMinutes(startTime, 30),
