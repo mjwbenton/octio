@@ -22,7 +22,7 @@ const typeDefs = gql`
 
   scalar DateTime
 
-  type Query {
+  extend type Query {
     energy(startDate: DateTime!, endDate: DateTime!): [EnergyPeriod!]!
   }
 
