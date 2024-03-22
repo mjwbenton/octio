@@ -94,6 +94,7 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
   }),
+  csrfPrevention: false,
 });
 
 export const handler = startServerAndCreateLambdaHandler(
