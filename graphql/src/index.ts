@@ -4,7 +4,6 @@ import {
   startServerAndCreateLambdaHandler,
 } from "@as-integrations/aws-lambda";
 import { Resolvers } from "./generated/graphql";
-import { buildSubgraphSchema } from "@apollo/subgraph";
 import gql from "graphql-tag";
 import { DateTimeResolver } from "graphql-scalars";
 import { getConsumptionData } from "./consumptionData";
@@ -13,12 +12,6 @@ import { addMinutes } from "date-fns/addMinutes";
 import { generateAllThirtyMinutePeriodsBetween } from "./generatePeriods";
 
 const typeDefs = gql`
-  extend schema
-    @link(
-      url: "https://specs.apollo.dev/federation/v2.0"
-      import: ["@key", "@shareable"]
-    )
-
   scalar DateTime
 
   extend type Query {
@@ -78,11 +71,8 @@ const resolvers: Resolvers = {
 };
 
 const server = new ApolloServer({
-  schema: buildSubgraphSchema({
-    typeDefs,
-    resolvers,
-  }),
-  csrfPrevention: false,
+  typeDefs,
+  resolvers,
 });
 
 export const handler = startServerAndCreateLambdaHandler(
