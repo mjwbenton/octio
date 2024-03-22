@@ -30,6 +30,7 @@ export async function getConsumptionData(
   });
 
   const results = await DYNAMO_CLIENT.send(command);
+  console.log("Consumption Data", JSON.stringify(results, null, 2));
   return (
     results.Items?.map((val) => ({
       energyType: val.energyType.S! as EnergyType,

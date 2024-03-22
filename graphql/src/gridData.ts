@@ -30,6 +30,7 @@ export async function getGridData(
   });
 
   const results = await DYNAMO_CLIENT.send(command);
+  console.log("Grid Data", JSON.stringify(results, null, 2));
   return (
     results.Items?.map((val) => ({
       startDate: parseISO(val.startDate.S!),
