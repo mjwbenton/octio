@@ -3,7 +3,7 @@ import {
   handlers,
   startServerAndCreateLambdaHandler,
 } from "@as-integrations/aws-lambda";
-import { Resolvers } from "./generated/graphql";
+import { EnergyPeriod, EnergyResult, Resolvers } from "./generated/graphql";
 import { buildSubgraphSchema } from "@apollo/subgraph";
 import gql from "graphql-tag";
 import { DateTimeResolver } from "graphql-scalars";
@@ -51,6 +51,12 @@ const typeDefs = gql`
     usage: Float!
     emissions: Float!
     missingData: Boolean!
+    mix: [FuelMix!]!
+  }
+
+  type FuelMix {
+    fuel: String!
+    percentage: Float!
   }
 `;
 
@@ -72,30 +78,31 @@ const resolvers: Resolvers = {
       const gridLookup = new Map(
         gridData.map((data) => [formatISO(data.startDate), data]),
       );
-      const periods = generateAllThirtyMinutePeriodsBetween(
-        startDate,
-        endDate,
-      ).map((startDate) => {
-        const electricity = electricityLookup.get(formatISO(startDate));
-        const gas = gasLookup.get(formatISO(startDate));
-        const grid = gridLookup.get(formatISO(startDate));
-        return {
-          startDate,
-          endDate: addMinutes(startDate, 30),
-          electricity: {
-            usage: electricity?.consumption ?? 0,
-            emissions:
-              Math.round(
-                (grid?.intensity ?? 0) * (electricity?.consumption ?? 0),
-              ) / 1000, // kgCo2e
-            missingData: electricity === undefined || grid === undefined,
+      const periods: Array<EnergyPeriod> =
+        generateAllThirtyMinutePeriodsBetween(startDate, endDate).map(
+          (startDate) => {
+            const electricity = electricityLookup.get(formatISO(startDate));
+            const gas = gasLookup.get(formatISO(startDate));
+            const grid = gridLookup.get(formatISO(startDate));
+            return {
+              startDate,
+              endDate: addMinutes(startDate, 30),
+              electricity: {
+                usage: electricity?.consumption ?? 0,
+                emissions:
+                  Math.round(
+                    (grid?.intensity ?? 0) * (electricity?.consumption ?? 0),
+                  ) / 1000, // kgCo2e
+                missingData: electricity === undefined || grid === undefined,
+                mix: grid?.mix ?? [],
+              },
+              gas: {
+                usage: gas?.consumption ?? 0,
+                missingData: gas === undefined,
+              },
+            };
           },
-          gas: {
-            usage: gas?.consumption ?? 0,
-            missingData: gas === undefined,
-          },
-        };
-      });
+        );
       const totals = periods.reduce(
         (acc, period) => {
           acc.electricity.usage += period.electricity.usage;
@@ -114,9 +121,18 @@ const resolvers: Resolvers = {
       return {
         startDate,
         endDate,
-        ...totals,
+        electricity: {
+          emissions: Math.round(totals.electricity.emissions * 1000) / 1000,
+          missingData: totals.electricity.missingData,
+          usage: Math.round(totals.electricity.usage * 1000) / 1000,
+          mix: [],
+        },
+        gas: {
+          usage: Math.round(totals.gas.usage * 1000) / 1000,
+          missingData: totals.gas.missingData,
+        },
         periods,
-      };
+      } satisfies EnergyResult;
     },
   },
 };

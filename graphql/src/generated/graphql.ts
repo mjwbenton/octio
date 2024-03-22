@@ -40,6 +40,7 @@ export type Scalars = {
 export type ElectricityPoint = {
   emissions: Scalars["Float"]["output"];
   missingData: Scalars["Boolean"]["output"];
+  mix: Array<FuelMix>;
   usage: Scalars["Float"]["output"];
 };
 
@@ -56,6 +57,11 @@ export type EnergyResult = {
   gas: GasPoint;
   periods: Array<EnergyPeriod>;
   startDate: Scalars["DateTime"]["output"];
+};
+
+export type FuelMix = {
+  fuel: Scalars["String"]["output"];
+  percentage: Scalars["Float"]["output"];
 };
 
 export type GasPoint = {
@@ -188,9 +194,10 @@ export type ResolversTypes = ResolversObject<{
   Boolean: ResolverTypeWrapper<Scalars["Boolean"]["output"]>;
   EnergyPeriod: ResolverTypeWrapper<EnergyPeriod>;
   EnergyResult: ResolverTypeWrapper<EnergyResult>;
+  FuelMix: ResolverTypeWrapper<FuelMix>;
+  String: ResolverTypeWrapper<Scalars["String"]["output"]>;
   GasPoint: ResolverTypeWrapper<GasPoint>;
   Query: ResolverTypeWrapper<{}>;
-  String: ResolverTypeWrapper<Scalars["String"]["output"]>;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -201,9 +208,10 @@ export type ResolversParentTypes = ResolversObject<{
   Boolean: Scalars["Boolean"]["output"];
   EnergyPeriod: EnergyPeriod;
   EnergyResult: EnergyResult;
+  FuelMix: FuelMix;
+  String: Scalars["String"]["output"];
   GasPoint: GasPoint;
   Query: {};
-  String: Scalars["String"]["output"];
 }>;
 
 export interface DateTimeScalarConfig
@@ -218,6 +226,7 @@ export type ElectricityPointResolvers<
 > = ResolversObject<{
   emissions?: Resolver<ResolversTypes["Float"], ParentType, ContextType>;
   missingData?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
+  mix?: Resolver<Array<ResolversTypes["FuelMix"]>, ParentType, ContextType>;
   usage?: Resolver<ResolversTypes["Float"], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
@@ -259,6 +268,16 @@ export type EnergyResultResolvers<
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
+export type FuelMixResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes["FuelMix"] = ResolversParentTypes["FuelMix"],
+> = ResolversObject<{
+  fuel?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+  percentage?: Resolver<ResolversTypes["Float"], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type GasPointResolvers<
   ContextType = any,
   ParentType extends
@@ -287,6 +306,7 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   ElectricityPoint?: ElectricityPointResolvers<ContextType>;
   EnergyPeriod?: EnergyPeriodResolvers<ContextType>;
   EnergyResult?: EnergyResultResolvers<ContextType>;
+  FuelMix?: FuelMixResolvers<ContextType>;
   GasPoint?: GasPointResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
 }>;
