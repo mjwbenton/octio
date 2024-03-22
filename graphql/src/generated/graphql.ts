@@ -60,8 +60,8 @@ export type EnergyResult = {
 };
 
 export type FuelMix = {
+  emissions: Scalars["Float"]["output"];
   fuel: Scalars["String"]["output"];
-  percentage: Scalars["Float"]["output"];
 };
 
 export type GasPoint = {
@@ -273,8 +273,8 @@ export type FuelMixResolvers<
   ParentType extends
     ResolversParentTypes["FuelMix"] = ResolversParentTypes["FuelMix"],
 > = ResolversObject<{
+  emissions?: Resolver<ResolversTypes["Float"], ParentType, ContextType>;
   fuel?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
-  percentage?: Resolver<ResolversTypes["Float"], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 

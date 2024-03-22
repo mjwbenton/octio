@@ -3,7 +3,12 @@ import {
   handlers,
   startServerAndCreateLambdaHandler,
 } from "@as-integrations/aws-lambda";
-import { EnergyPeriod, EnergyResult, Resolvers } from "./generated/graphql";
+import {
+  EnergyPeriod,
+  EnergyResult,
+  FuelMix,
+  Resolvers,
+} from "./generated/graphql";
 import { buildSubgraphSchema } from "@apollo/subgraph";
 import gql from "graphql-tag";
 import { DateTimeResolver } from "graphql-scalars";
@@ -56,7 +61,7 @@ const typeDefs = gql`
 
   type FuelMix {
     fuel: String!
-    percentage: Float!
+    emissions: Float!
   }
 `;
 
@@ -94,7 +99,16 @@ const resolvers: Resolvers = {
                     (grid?.intensity ?? 0) * (electricity?.consumption ?? 0),
                   ) / 1000, // kgCo2e
                 missingData: electricity === undefined || grid === undefined,
-                mix: grid?.mix ?? [],
+                mix:
+                  grid?.mix.map(({ fuel, percentage }) => ({
+                    fuel,
+                    emissions:
+                      Math.round(
+                        (grid?.intensity ?? 0) *
+                          (electricity?.consumption ?? 0) *
+                          (percentage / 100),
+                      ) / 1000,
+                  })) ?? [],
               },
               gas: {
                 usage: gas?.consumption ?? 0,
@@ -109,13 +123,28 @@ const resolvers: Resolvers = {
           acc.electricity.emissions += period.electricity.emissions;
           acc.electricity.missingData =
             acc.electricity.missingData || period.electricity.missingData;
+          period.electricity.mix.forEach(({ fuel, emissions }) => {
+            const index = acc.electricity.mix.findIndex(
+              (mix) => mix.fuel === fuel,
+            );
+            if (index != -1) {
+              acc.electricity.mix[index].emissions += emissions;
+            } else {
+              acc.electricity.mix.push({ fuel, emissions });
+            }
+          });
           acc.gas.usage += period.gas.usage;
           acc.gas.missingData = acc.gas.missingData || period.gas.missingData;
           return acc;
         },
         {
           gas: { usage: 0, missingData: false },
-          electricity: { usage: 0, emissions: 0, missingData: false },
+          electricity: {
+            usage: 0,
+            emissions: 0,
+            missingData: false,
+            mix: [] as FuelMix[],
+          },
         },
       );
       return {
@@ -125,7 +154,10 @@ const resolvers: Resolvers = {
           emissions: Math.round(totals.electricity.emissions * 1000) / 1000,
           missingData: totals.electricity.missingData,
           usage: Math.round(totals.electricity.usage * 1000) / 1000,
-          mix: [],
+          mix: totals.electricity.mix.map(({ fuel, emissions }) => ({
+            fuel,
+            emissions: Math.round(emissions * 1000) / 1000,
+          })),
         },
         gas: {
           usage: Math.round(totals.gas.usage * 1000) / 1000,
