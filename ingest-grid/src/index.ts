@@ -59,7 +59,7 @@ async function writeData(data: Array<InputDataType>) {
                     mix: {
                       L: item.generationmix.map((mix) => ({
                         M: {
-                          fueld: { S: mix.fuel },
+                          fuel: { S: mix.fuel },
                           percentage: { N: mix.perc.toString() },
                         },
                       })),

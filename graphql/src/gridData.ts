@@ -37,7 +37,7 @@ export async function getGridData(
       endDate: parseISO(val.endDate.S!),
       intensity: parseInt(val.intensity.N!),
       mix: val.mix.L!.map((mix) => ({
-        fuel: mix.M!.fueld.S!,
+        fuel: mix.M!.fuel.S!,
         percentage: parseFloat(mix.M!.percentage.N!),
       })),
     })) ?? []
