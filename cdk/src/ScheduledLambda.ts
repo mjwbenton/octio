@@ -1,4 +1,4 @@
-import { CfnOutput, Duration } from "aws-cdk-lib";
+import { Duration } from "aws-cdk-lib";
 import { Rule, Schedule } from "aws-cdk-lib/aws-events";
 import {
   FunctionUrlAuthType,
