@@ -4,9 +4,15 @@ import {
 } from "@aws-sdk/client-dynamodb";
 import env from "./env";
 import chunk from "lodash.chunk";
+import { APIGatewayEvent, EventBridgeEvent } from "aws-lambda";
+import { formatISO } from "date-fns/formatISO";
+import { subDays } from "date-fns/subDays";
+import { parseISO } from "date-fns/parseISO";
 
 const DYNAMO_CLIENT = new DynamoDBClient({});
 const CHUNK_SIZE = 25;
+
+const OCTOPUS_PAGE_SIZE = 25_000;
 
 enum EnergyType {
   ELECTRICITY = "ELECTRICITY",
@@ -34,17 +40,47 @@ const HEADERS = {
   Authorization: `Basic ${Buffer.from(env.OCTOPUS_API_KEY + ":").toString("base64")}`,
 };
 
-export async function handler() {
+type Event = APIGatewayEvent | EventBridgeEvent<string, unknown>;
+
+export async function handler(event: Event) {
+  const { from, to } = datesFromEvent(event);
   await Promise.all([
-    importType(EnergyType.ELECTRICITY),
-    importType(EnergyType.GAS),
+    importType(EnergyType.ELECTRICITY, { from, to }),
+    importType(EnergyType.GAS, { from, to }),
   ]);
 }
 
-async function importType(type: EnergyTypeKey) {
-  const response = await fetch(ENERGY_TYPE_CONFIG[type].endpoint, {
-    headers: HEADERS,
-  });
+function datesFromEvent(event: Event): { from: Date; to: Date } {
+  const defaultFrom = subDays(new Date(), 1);
+  const defaultTo = new Date();
+  if (eventIsApiEvent(event)) {
+    const query = event.queryStringParameters;
+    return {
+      from: query?.from ? parseISO(query?.from) : defaultFrom,
+      to: query?.to ? parseISO(query?.to) : defaultTo,
+    };
+  } else {
+    return {
+      from: defaultFrom,
+      to: defaultTo,
+    };
+  }
+}
+
+function eventIsApiEvent(event: Event): event is APIGatewayEvent {
+  return "queryStringParameters" in event;
+}
+
+async function importType(
+  type: EnergyTypeKey,
+  { from, to }: { from: Date; to: Date },
+) {
+  const response = await fetch(
+    `${ENERGY_TYPE_CONFIG[type].endpoint}?page_size=${OCTOPUS_PAGE_SIZE}&period_from=${formatISO(from)}&period_to=${formatISO(to)}`,
+    {
+      headers: HEADERS,
+    },
+  );
   const result = (await response.json()) as { results: Array<InputDataType> };
   await writeData(type, result.results);
 }

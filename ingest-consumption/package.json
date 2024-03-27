@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.2",
+    "@types/aws-lambda": "^8.10.136",
     "@types/lodash.chunk": "^4.2.9",
     "@types/node": "^20.11.21",
     "prettier": "^3.2.5",
@@ -17,6 +18,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.521.0",
+    "date-fns": "^3.6.0",
     "envalid": "^8.0.0",
     "lodash.chunk": "^4.2.0"
   }
