@@ -6,6 +6,7 @@ import env from "./env";
 import chunk from "lodash.chunk";
 import { formatISO } from "date-fns/formatISO";
 import { subDays } from "date-fns/subDays";
+import { APIGatewayEvent, EventBridgeEvent } from "aws-lambda";
 
 const POSTCODE = "BS3";
 const DYNAMO_CLIENT = new DynamoDBClient({});
@@ -27,9 +28,10 @@ const HEADERS = {
   Accept: "application/json",
 };
 
-export async function handler() {
-  const from = formatISO(subDays(new Date(), 1));
-  const to = formatISO(new Date());
+type Event = APIGatewayEvent | EventBridgeEvent<string, unknown>;
+
+export async function handler(event: Event) {
+  const { from, to } = datesFromEvent(event);
   const response = await fetch(
     `https://api.carbonintensity.org.uk/regional/intensity/${from}/${to}/postcode/${POSTCODE}`,
     {
@@ -40,6 +42,26 @@ export async function handler() {
     data: { data: Array<InputDataType> };
   };
   await writeData(result.data.data);
+}
+
+function datesFromEvent(event: Event) {
+  const defaultFrom = formatISO(subDays(new Date(), 1));
+  const defaultTo = formatISO(new Date());
+  if (eventIsApiEvent(event)) {
+    return {
+      from: event.queryStringParameters?.from ?? defaultFrom,
+      to: event.queryStringParameters?.to ?? defaultTo,
+    };
+  } else {
+    return {
+      from: defaultFrom,
+      to: defaultTo,
+    };
+  }
+}
+
+function eventIsApiEvent(event: Event): event is APIGatewayEvent {
+  return "queryStringParameters" in event;
 }
 
 async function writeData(data: Array<InputDataType>) {
