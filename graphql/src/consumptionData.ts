@@ -19,7 +19,7 @@ export async function getConsumptionData(
   endDate: Date,
 ): Promise<Array<DataPoint>> {
   const command = new QueryCommand({
-    TableName: env.DATA_TABLE,
+    TableName: env.CONSUMPTION_TABLE,
     KeyConditionExpression:
       "energyType = :energyType and startDate between :start and :end",
     ExpressionAttributeValues: {

@@ -27,7 +27,10 @@ export default class OctioGraphqlStack extends Stack {
   constructor(
     scope: Construct,
     id: string,
-    { dataTable, gridTable }: { dataTable: ITable; gridTable: ITable },
+    {
+      consumptionTable,
+      gridTable,
+    }: { consumptionTable: ITable; gridTable: ITable },
   ) {
     super(scope, id);
 
@@ -44,12 +47,12 @@ export default class OctioGraphqlStack extends Stack {
       runtime: Runtime.NODEJS_18_X,
       memorySize: 1024,
       environment: {
-        DATA_TABLE: dataTable.tableName,
+        DATA_TABLE: consumptionTable.tableName,
         GRID_TABLE: gridTable.tableName,
       },
     });
     const url = lambda.addFunctionUrl({ authType: FunctionUrlAuthType.NONE });
-    dataTable.grantReadData(lambda);
+    consumptionTable.grantReadData(lambda);
     gridTable.grantReadData(lambda);
 
     const hostedZone = HostedZone.fromHostedZoneAttributes(this, "HostedZone", {

@@ -9,7 +9,10 @@ export default class OctioIngestionStack extends Stack {
   constructor(
     scope: Construct,
     id: string,
-    { dataTable, gridTable }: { dataTable: ITable; gridTable: ITable },
+    {
+      consumptionTable,
+      gridTable,
+    }: { consumptionTable: ITable; gridTable: ITable },
   ) {
     super(scope, id);
 
@@ -19,7 +22,7 @@ export default class OctioIngestionStack extends Stack {
       {
         entry: path.join(__dirname, "../../ingest-consumption/dist/index.js"),
         environment: {
-          DATA_TABLE: dataTable.tableName,
+          CONSUMPTION_TABLE: consumptionTable.tableName,
           OCTOPUS_API_KEY: env.OCTOPUS_API_KEY,
           OCTOPUS_ELECTRICITY_MPAN: env.OCTOPUS_ELECTRICITY_MPAN,
           OCTOPUS_ELECTRICITY_SERIAL: env.OCTOPUS_ELECTRICITY_SERIAL,
@@ -29,7 +32,7 @@ export default class OctioIngestionStack extends Stack {
       },
     );
 
-    dataTable.grantReadWriteData(ingestConsumptionLambda.lambda);
+    consumptionTable.grantReadWriteData(ingestConsumptionLambda.lambda);
 
     new CfnOutput(this, "IngestConsumptionUrl", {
       value: ingestConsumptionLambda.url,

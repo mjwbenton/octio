@@ -95,7 +95,7 @@ async function writeData(
         return await DYNAMO_CLIENT.send(
           new BatchWriteItemCommand({
             RequestItems: {
-              [env.DATA_TABLE]: batch.map((item) => ({
+              [env.CONSUMPTION_TABLE]: batch.map((item) => ({
                 PutRequest: {
                   Item: {
                     energyType: { S: energyType },
