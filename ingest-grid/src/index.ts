@@ -7,6 +7,7 @@ import chunk from "lodash.chunk";
 import { formatISO } from "date-fns/formatISO";
 import { subDays } from "date-fns/subDays";
 import { APIGatewayEvent, EventBridgeEvent } from "aws-lambda";
+import { parseISO } from "date-fns/parseISO";
 
 const POSTCODE = "BS3";
 const DYNAMO_CLIENT = new DynamoDBClient({});
@@ -33,7 +34,7 @@ type Event = APIGatewayEvent | EventBridgeEvent<string, unknown>;
 export async function handler(event: Event) {
   const { from, to } = datesFromEvent(event);
   const response = await fetch(
-    `https://api.carbonintensity.org.uk/regional/intensity/${from}/${to}/postcode/${POSTCODE}`,
+    `https://api.carbonintensity.org.uk/regional/intensity/${formatISO(from)}/${formatISO(to)}/postcode/${POSTCODE}`,
     {
       headers: HEADERS,
     },
@@ -44,13 +45,14 @@ export async function handler(event: Event) {
   await writeData(result.data.data);
 }
 
-function datesFromEvent(event: Event) {
-  const defaultFrom = formatISO(subDays(new Date(), 1));
-  const defaultTo = formatISO(new Date());
+function datesFromEvent(event: Event): { from: Date; to: Date } {
+  const defaultFrom = subDays(new Date(), 1);
+  const defaultTo = new Date();
   if (eventIsApiEvent(event)) {
+    const query = event.queryStringParameters;
     return {
-      from: event.queryStringParameters?.from ?? defaultFrom,
-      to: event.queryStringParameters?.to ?? defaultTo,
+      from: query?.from ? parseISO(query?.from) : defaultFrom,
+      to: query?.to ? parseISO(query?.to) : defaultTo,
     };
   } else {
     return {
