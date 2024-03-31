@@ -1,5 +1,5 @@
 import { DynamoDBClient, QueryCommand } from "@aws-sdk/client-dynamodb";
-import env from "./env";
+import env from "../env";
 import { formatISO } from "date-fns/formatISO";
 import { parseISO } from "date-fns/parseISO";
 
@@ -7,7 +7,7 @@ const POSTCODE = "BS3";
 
 const DYNAMO_CLIENT = new DynamoDBClient({});
 
-interface DataPoint {
+export interface GridDataPoint {
   startDate: Date;
   endDate: Date;
   intensity: number;
@@ -17,7 +17,7 @@ interface DataPoint {
 export async function getGridData(
   startDate: Date,
   endDate: Date,
-): Promise<Array<DataPoint>> {
+): Promise<Array<GridDataPoint>> {
   const command = new QueryCommand({
     TableName: env.GRID_TABLE,
     KeyConditionExpression:

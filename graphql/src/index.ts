@@ -3,19 +3,16 @@ import {
   handlers,
   startServerAndCreateLambdaHandler,
 } from "@as-integrations/aws-lambda";
-import { EnergyPeriod, Energy, FuelMix, Resolvers } from "./generated/graphql";
+import { EnergyPeriod, Energy, Resolvers } from "./generated/graphql";
 import { buildSubgraphSchema } from "@apollo/subgraph";
 import gql from "graphql-tag";
 import { DateTimeResolver } from "graphql-scalars";
-import { getConsumptionData } from "./consumptionData";
-import { EnergyType } from "./energyType";
-import { addMinutes } from "date-fns/addMinutes";
+import { EnergyType, getConsumptionData } from "./data/consumptionData";
 import { generateAllThirtyMinutePeriodsBetween } from "./generatePeriods";
-import { getGridData } from "./gridData";
+import { getGridData } from "./data/gridData";
 import { formatISO } from "date-fns/formatISO";
-
-// Source: https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2023
-const NATURAL_GAS_EMISSIONS_FACTOR = 203; // gCO2e/kWh
+import { gasPoint, gasPointFromData } from "./gas";
+import { electricityPoint, electricityPointFromData } from "./electricity";
 
 const typeDefs = gql`
   extend schema
@@ -77,41 +74,16 @@ const resolvers: Resolvers = {
         gridData.map((data) => [formatISO(data.startDate), data]),
       );
       const periods: Array<EnergyPeriod> =
-        generateAllThirtyMinutePeriodsBetween(startDate, endDate).map(
-          (startDate) => {
+        generateAllThirtyMinutePeriodsBetween({ startDate, endDate }).map(
+          ({ startDate, endDate }) => {
             const electricity = electricityLookup.get(formatISO(startDate));
             const gas = gasLookup.get(formatISO(startDate));
             const grid = gridLookup.get(formatISO(startDate));
             return {
               startDate,
-              endDate: addMinutes(startDate, 30),
-              electricity: {
-                usage: electricity?.consumption ?? 0,
-                emissions:
-                  Math.round(
-                    (grid?.intensity ?? 0) * (electricity?.consumption ?? 0),
-                  ) / 1000, // kgCO2e
-                missingData: electricity === undefined || grid === undefined,
-                mix:
-                  grid?.mix.map(({ fuel, percentage }) => ({
-                    fuel,
-                    percentage: percentage / 100,
-                  })) ?? [],
-              },
-              gas: {
-                usage: gas?.consumption ?? 0,
-                missingData: gas === undefined,
-                emissions:
-                  Math.round(
-                    NATURAL_GAS_EMISSIONS_FACTOR * (gas?.consumption ?? 0),
-                  ) / 1000,
-                mix: [
-                  {
-                    fuel: "gas",
-                    percentage: 1.0,
-                  },
-                ],
-              },
+              endDate,
+              electricity: electricityPointFromData(electricity, grid),
+              gas: gasPointFromData(gas),
             };
           },
         );
@@ -146,30 +118,21 @@ const resolvers: Resolvers = {
       return {
         startDate,
         endDate,
-        electricity: {
-          emissions: Math.round(totals.electricity.emissions * 1000) / 1000,
+        electricity: electricityPoint({
+          usage: totals.electricity.usage,
           missingData: totals.electricity.missingData,
-          usage: Math.round(totals.electricity.usage * 1000) / 1000,
+          emissions: totals.electricity.emissions,
           mix: Object.entries(totals.electricity.fuelUsage).map(
             ([fuel, usage]) => ({
               fuel,
-              percentage:
-                Math.round((usage / totals.electricity.usage) * 100) / 100,
+              percentage: usage / totals.electricity.usage,
             }),
           ),
-        },
-        gas: {
-          usage: Math.round(totals.gas.usage * 1000) / 1000,
+        }),
+        gas: gasPoint({
+          usage: totals.gas.usage,
           missingData: totals.gas.missingData,
-          emissions:
-            Math.round(totals.gas.usage * NATURAL_GAS_EMISSIONS_FACTOR) / 1000,
-          mix: [
-            {
-              fuel: "gas",
-              percentage: 1.0,
-            },
-          ],
-        },
+        }),
         periods,
       } satisfies Energy;
     },

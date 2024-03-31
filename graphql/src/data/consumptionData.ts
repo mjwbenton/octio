@@ -1,23 +1,27 @@
 import { DynamoDBClient, QueryCommand } from "@aws-sdk/client-dynamodb";
-import env from "./env";
+import env from "../env";
 import { formatISO } from "date-fns/formatISO";
 import { parseISO } from "date-fns/parseISO";
-import { EnergyType } from "./energyType";
 
 const DYNAMO_CLIENT = new DynamoDBClient({});
 
-interface DataPoint {
+export interface ConsumptionDataPoint {
   energyType: EnergyType;
   startDate: Date;
   endDate: Date;
   consumption: number;
 }
 
+export enum EnergyType {
+  ELECTRICITY = "ELECTRICITY",
+  GAS = "GAS",
+}
+
 export async function getConsumptionData(
   energyType: EnergyType,
   startDate: Date,
   endDate: Date,
-): Promise<Array<DataPoint>> {
+): Promise<Array<ConsumptionDataPoint>> {
   const command = new QueryCommand({
     TableName: env.CONSUMPTION_TABLE,
     KeyConditionExpression:
