@@ -54,7 +54,7 @@ const typeDefs = gql`
 
   type FuelMix {
     fuel: String!
-    emissions: Float!
+    percentage: Float!
   }
 `;
 
@@ -95,12 +95,7 @@ const resolvers: Resolvers = {
                 mix:
                   grid?.mix.map(({ fuel, percentage }) => ({
                     fuel,
-                    emissions:
-                      Math.round(
-                        (grid?.intensity ?? 0) *
-                          (electricity?.consumption ?? 0) *
-                          (percentage / 100),
-                      ) / 1000,
+                    percentage: percentage / 100,
                   })) ?? [],
               },
               gas: {
@@ -113,10 +108,7 @@ const resolvers: Resolvers = {
                 mix: [
                   {
                     fuel: "gas",
-                    emissions:
-                      Math.round(
-                        NATURAL_GAS_EMISSIONS_FACTOR * (gas?.consumption ?? 0),
-                      ) / 1000,
+                    percentage: 1.0,
                   },
                 ],
               },
@@ -129,15 +121,10 @@ const resolvers: Resolvers = {
           acc.electricity.emissions += period.electricity.emissions;
           acc.electricity.missingData =
             acc.electricity.missingData || period.electricity.missingData;
-          period.electricity.mix.forEach(({ fuel, emissions }) => {
-            const index = acc.electricity.mix.findIndex(
-              (mix) => mix.fuel === fuel,
-            );
-            if (index != -1) {
-              acc.electricity.mix[index].emissions += emissions;
-            } else {
-              acc.electricity.mix.push({ fuel, emissions });
-            }
+          period.electricity.mix.forEach(({ fuel, percentage }) => {
+            acc.electricity.fuelUsage[fuel] =
+              (acc.electricity.fuelUsage[fuel] ?? 0) +
+              period.electricity.usage * (percentage / 100);
           });
           acc.gas.usage += period.gas.usage;
           acc.gas.missingData = acc.gas.missingData || period.gas.missingData;
@@ -152,7 +139,7 @@ const resolvers: Resolvers = {
             usage: 0,
             emissions: 0,
             missingData: false,
-            mix: [] as FuelMix[],
+            fuelUsage: {} as { [fuel: string]: number },
           },
         },
       );
@@ -163,10 +150,13 @@ const resolvers: Resolvers = {
           emissions: Math.round(totals.electricity.emissions * 1000) / 1000,
           missingData: totals.electricity.missingData,
           usage: Math.round(totals.electricity.usage * 1000) / 1000,
-          mix: totals.electricity.mix.map(({ fuel, emissions }) => ({
-            fuel,
-            emissions: Math.round(emissions * 1000) / 1000,
-          })),
+          mix: Object.entries(totals.electricity.fuelUsage).map(
+            ([fuel, usage]) => ({
+              fuel,
+              percentage:
+                Math.round((usage / totals.electricity.usage) * 100) / 100,
+            }),
+          ),
         },
         gas: {
           usage: Math.round(totals.gas.usage * 1000) / 1000,
@@ -176,9 +166,7 @@ const resolvers: Resolvers = {
           mix: [
             {
               fuel: "gas",
-              emissions:
-                Math.round(totals.gas.usage * NATURAL_GAS_EMISSIONS_FACTOR) /
-                1000,
+              percentage: 1.0,
             },
           ],
         },
