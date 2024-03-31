@@ -3,12 +3,7 @@ import {
   handlers,
   startServerAndCreateLambdaHandler,
 } from "@as-integrations/aws-lambda";
-import {
-  EnergyPeriod,
-  EnergyResult,
-  FuelMix,
-  Resolvers,
-} from "./generated/graphql";
+import { EnergyPeriod, Energy, FuelMix, Resolvers } from "./generated/graphql";
 import { buildSubgraphSchema } from "@apollo/subgraph";
 import gql from "graphql-tag";
 import { DateTimeResolver } from "graphql-scalars";
@@ -18,6 +13,9 @@ import { addMinutes } from "date-fns/addMinutes";
 import { generateAllThirtyMinutePeriodsBetween } from "./generatePeriods";
 import { getGridData } from "./gridData";
 import { formatISO } from "date-fns/formatISO";
+
+// Source: https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2023
+const NATURAL_GAS_EMISSIONS_FACTOR = 203; // gCO2e/kWh
 
 const typeDefs = gql`
   extend schema
@@ -29,30 +27,25 @@ const typeDefs = gql`
   scalar DateTime
 
   extend type Query {
-    energy(startDate: DateTime!, endDate: DateTime!): EnergyResult!
+    energy(startDate: DateTime!, endDate: DateTime!): Energy!
   }
 
-  type EnergyResult {
+  type Energy {
     startDate: DateTime!
     endDate: DateTime!
-    gas: GasPoint!
-    electricity: ElectricityPoint!
+    gas: EnergyPoint!
+    electricity: EnergyPoint!
     periods: [EnergyPeriod!]!
   }
 
   type EnergyPeriod {
     startDate: DateTime!
     endDate: DateTime!
-    gas: GasPoint!
-    electricity: ElectricityPoint!
+    electricity: EnergyPoint!
+    gas: EnergyPoint!
   }
 
-  type GasPoint {
-    usage: Float!
-    missingData: Boolean!
-  }
-
-  type ElectricityPoint {
+  type EnergyPoint {
     usage: Float!
     emissions: Float!
     missingData: Boolean!
@@ -97,7 +90,7 @@ const resolvers: Resolvers = {
                 emissions:
                   Math.round(
                     (grid?.intensity ?? 0) * (electricity?.consumption ?? 0),
-                  ) / 1000, // kgCo2e
+                  ) / 1000, // kgCO2e
                 missingData: electricity === undefined || grid === undefined,
                 mix:
                   grid?.mix.map(({ fuel, percentage }) => ({
@@ -113,6 +106,19 @@ const resolvers: Resolvers = {
               gas: {
                 usage: gas?.consumption ?? 0,
                 missingData: gas === undefined,
+                emissions:
+                  Math.round(
+                    NATURAL_GAS_EMISSIONS_FACTOR * (gas?.consumption ?? 0),
+                  ) / 1000,
+                mix: [
+                  {
+                    fuel: "gas",
+                    emissions:
+                      Math.round(
+                        NATURAL_GAS_EMISSIONS_FACTOR * (gas?.consumption ?? 0),
+                      ) / 1000,
+                  },
+                ],
               },
             };
           },
@@ -138,7 +144,10 @@ const resolvers: Resolvers = {
           return acc;
         },
         {
-          gas: { usage: 0, missingData: false },
+          gas: {
+            usage: 0,
+            missingData: false,
+          },
           electricity: {
             usage: 0,
             emissions: 0,
@@ -162,9 +171,19 @@ const resolvers: Resolvers = {
         gas: {
           usage: Math.round(totals.gas.usage * 1000) / 1000,
           missingData: totals.gas.missingData,
+          emissions:
+            Math.round(totals.gas.usage * NATURAL_GAS_EMISSIONS_FACTOR) / 1000,
+          mix: [
+            {
+              fuel: "gas",
+              emissions:
+                Math.round(totals.gas.usage * NATURAL_GAS_EMISSIONS_FACTOR) /
+                1000,
+            },
+          ],
         },
         periods,
-      } satisfies EnergyResult;
+      } satisfies Energy;
     },
   },
 };
