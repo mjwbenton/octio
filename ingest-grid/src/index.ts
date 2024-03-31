@@ -40,6 +40,9 @@ export async function handler(event: Event) {
       headers: HEADERS,
     },
   );
+  if (response.status !== 200) {
+    throw new Error(`Failed to fetch data: ${response.statusText}`);
+  }
   const result = (await response.json()) as {
     data: { data: Array<InputDataType> };
   };
