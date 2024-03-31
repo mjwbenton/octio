@@ -47,7 +47,7 @@ export default class OctioGraphqlStack extends Stack {
       runtime: Runtime.NODEJS_18_X,
       memorySize: 1024,
       environment: {
-        DATA_TABLE: consumptionTable.tableName,
+        CONSUMPTION_TABLE: consumptionTable.tableName,
         GRID_TABLE: gridTable.tableName,
       },
     });
