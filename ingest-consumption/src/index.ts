@@ -52,7 +52,7 @@ export async function handler(event: Event) {
 }
 
 function datesFromEvent(event: Event): { from: Date; to: Date } {
-  const defaultFrom = subDays(new Date(), 1);
+  const defaultFrom = subDays(new Date(), 7);
   const defaultTo = new Date();
   if (eventIsApiEvent(event)) {
     const query = event.queryStringParameters;
