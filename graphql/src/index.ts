@@ -75,13 +75,13 @@ const resolvers: Resolvers = {
         getGridData(startDate, endDate),
       ]);
       const electricityLookup = new Map(
-        electricityData.map((data) => [formatISO(data.startDate), data]),
+        electricityData.map((data) => [formatISO(data.startDate), data])
       );
       const gasLookup = new Map(
-        gasData.map((data) => [formatISO(data.startDate), data]),
+        gasData.map((data) => [formatISO(data.startDate), data])
       );
       const gridLookup = new Map(
-        gridData.map((data) => [formatISO(data.startDate), data]),
+        gridData.map((data) => [formatISO(data.startDate), data])
       );
       const periods: Array<EnergyPeriod> =
         generateAllThirtyMinutePeriodsBetween(startDate, endDate).map(
@@ -96,7 +96,7 @@ const resolvers: Resolvers = {
                 usage: electricity?.consumption ?? 0,
                 emissions:
                   Math.round(
-                    (grid?.intensity ?? 0) * (electricity?.consumption ?? 0),
+                    (grid?.intensity ?? 0) * (electricity?.consumption ?? 0)
                   ) / 1000, // kgCo2e
                 missingData: electricity === undefined || grid === undefined,
                 mix:
@@ -106,7 +106,7 @@ const resolvers: Resolvers = {
                       Math.round(
                         (grid?.intensity ?? 0) *
                           (electricity?.consumption ?? 0) *
-                          (percentage / 100),
+                          (percentage / 100)
                       ) / 1000,
                   })) ?? [],
               },
@@ -115,7 +115,7 @@ const resolvers: Resolvers = {
                 missingData: gas === undefined,
               },
             };
-          },
+          }
         );
       const totals = periods.reduce(
         (acc, period) => {
@@ -125,7 +125,7 @@ const resolvers: Resolvers = {
             acc.electricity.missingData || period.electricity.missingData;
           period.electricity.mix.forEach(({ fuel, emissions }) => {
             const index = acc.electricity.mix.findIndex(
-              (mix) => mix.fuel === fuel,
+              (mix) => mix.fuel === fuel
             );
             if (index != -1) {
               acc.electricity.mix[index].emissions += emissions;
@@ -145,7 +145,7 @@ const resolvers: Resolvers = {
             missingData: false,
             mix: [] as FuelMix[],
           },
-        },
+        }
       );
       return {
         startDate,
@@ -174,10 +174,9 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
   }),
-  csrfPrevention: false,
 });
 
 export const handler = startServerAndCreateLambdaHandler(
   server,
-  handlers.createAPIGatewayProxyEventV2RequestHandler(),
+  handlers.createAPIGatewayProxyEventV2RequestHandler()
 );
