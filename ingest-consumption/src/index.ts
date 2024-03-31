@@ -76,12 +76,11 @@ async function importType(
   type: EnergyTypeKey,
   { from, to }: { from: Date; to: Date },
 ) {
-  const response = await fetch(
-    `${ENERGY_TYPE_CONFIG[type].endpoint}?page_size=${OCTOPUS_PAGE_SIZE}&period_from=${formatISO(from)}&period_to=${formatISO(to)}`,
-    {
-      headers: HEADERS,
-    },
-  );
+  const url = `${ENERGY_TYPE_CONFIG[type].endpoint}?page_size=${OCTOPUS_PAGE_SIZE}&period_from=${formatISO(from)}&period_to=${formatISO(to)}`;
+  console.log(`Fetching ${type} data from ${url}`);
+  const response = await fetch(url, {
+    headers: HEADERS,
+  });
   const result = (await response.json()) as { results: Array<InputDataType> };
   console.log(`Fetched ${result.results.length} ${type} data points`);
   console.log(JSON.stringify(result.results, null, 2));
