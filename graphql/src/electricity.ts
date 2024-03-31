@@ -11,11 +11,7 @@ export function electricityPointFromData(
     emissions:
       ((grid?.intensity ?? 0) * (electricity?.consumption ?? 0)) / 1000,
     missingData: electricity === undefined || grid === undefined,
-    mix:
-      grid?.mix.map(({ fuel, percentage }) => ({
-        fuel,
-        percentage: percentage / 100,
-      })) ?? [],
+    mix: grid?.mix ?? [],
   });
 }
 
@@ -36,7 +32,7 @@ export function electricityPoint({
     missingData,
     mix: mix.map(({ fuel, percentage }) => ({
       fuel,
-      percentage: formatNumber(percentage),
+      percentage: formatNumber(percentage, 1),
     })),
   };
 }

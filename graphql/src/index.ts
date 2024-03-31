@@ -125,7 +125,7 @@ const resolvers: Resolvers = {
           mix: Object.entries(totals.electricity.fuelUsage).map(
             ([fuel, usage]) => ({
               fuel,
-              percentage: usage / totals.electricity.usage,
+              percentage: (usage / totals.electricity.usage) * 100,
             }),
           ),
         }),
