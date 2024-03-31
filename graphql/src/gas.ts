@@ -19,7 +19,7 @@ export function gasPoint({
     mix: [
       {
         fuel: "gas",
-        percentage: 1.0,
+        percentage: 100.0,
       },
     ],
   };
