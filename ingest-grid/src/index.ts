@@ -33,6 +33,7 @@ type Event = APIGatewayEvent | EventBridgeEvent<string, unknown>;
 
 export async function handler(event: Event) {
   const { from, to } = datesFromEvent(event);
+  console.log("Importing grid data", { from, to });
   const response = await fetch(
     `https://api.carbonintensity.org.uk/regional/intensity/${formatISO(from)}/${formatISO(to)}/postcode/${POSTCODE}`,
     {
@@ -42,6 +43,8 @@ export async function handler(event: Event) {
   const result = (await response.json()) as {
     data: { data: Array<InputDataType> };
   };
+  console.log(`Fetched ${result.data.data.length} data points`);
+  console.log(JSON.stringify(result.data.data, null, 2));
   await writeData(result.data.data);
 }
 

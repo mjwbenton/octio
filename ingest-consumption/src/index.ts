@@ -44,6 +44,7 @@ type Event = APIGatewayEvent | EventBridgeEvent<string, unknown>;
 
 export async function handler(event: Event) {
   const { from, to } = datesFromEvent(event);
+  console.log("Importing consumption data", { from, to });
   await Promise.all([
     importType(EnergyType.ELECTRICITY, { from, to }),
     importType(EnergyType.GAS, { from, to }),
@@ -82,6 +83,8 @@ async function importType(
     },
   );
   const result = (await response.json()) as { results: Array<InputDataType> };
+  console.log(`Fetched ${result.results.length} ${type} data points`);
+  console.log(JSON.stringify(result.results, null, 2));
   await writeData(type, result.results);
 }
 
