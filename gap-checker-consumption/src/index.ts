@@ -7,7 +7,7 @@ import { addMinutes } from "date-fns";
 
 const DYNAMO_CLIENT = new DynamoDBClient({});
 
-const CUSHION_DAYS = 3;
+const CUSHION_DAYS = 7;
 
 enum EnergyType {
   ELECTRICITY = "ELECTRICITY",
