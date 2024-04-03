@@ -16,7 +16,7 @@ export interface GridDataPoint {
 
 export async function getGridData(
   startDate: Date,
-  endDate: Date
+  endDate: Date,
 ): Promise<Array<GridDataPoint>> {
   const command = {
     TableName: env.GRID_TABLE,
@@ -31,7 +31,7 @@ export async function getGridData(
 
   const paginator = paginateQuery(
     { client: DYNAMO_CLIENT, pageSize: 1000 },
-    command
+    command,
   );
   const results: Array<GridDataPoint> = [];
   for await (const page of paginator) {

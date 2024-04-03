@@ -52,7 +52,7 @@ function generateDateList(startDate: Date, endDate: Date): Array<Date> {
 async function fetchConsumptionDates(
   energyType: EnergyType,
   startDate: Date,
-  endDate: Date
+  endDate: Date,
 ): Promise<Array<Date>> {
   const command = {
     TableName: env.CONSUMPTION_TABLE,
@@ -67,7 +67,7 @@ async function fetchConsumptionDates(
 
   const paginator = paginateQuery(
     { client: DYNAMO_CLIENT, pageSize: 1000 },
-    command
+    command,
   );
 
   const dates: Array<Date> = [];
@@ -87,10 +87,10 @@ async function checkType(type: EnergyType) {
   const dataDates = await fetchConsumptionDates(type, startDate, endDate);
   const dataDatesLookup = new Set(dataDates.map((date) => formatISO(date)));
   const missingDates = generatedDates.filter(
-    (date) => !dataDatesLookup.has(formatISO(date))
+    (date) => !dataDatesLookup.has(formatISO(date)),
   );
   console.log(
-    `Missing ${missingDates.length} dates for ${type}: ${JSON.stringify(missingDates, null, 2)}`
+    `Missing ${missingDates.length} dates for ${type}: ${JSON.stringify(missingDates, null, 2)}`,
   );
   return missingDates.length;
 }

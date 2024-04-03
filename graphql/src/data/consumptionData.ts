@@ -20,7 +20,7 @@ export enum EnergyType {
 export async function getConsumptionData(
   energyType: EnergyType,
   startDate: Date,
-  endDate: Date
+  endDate: Date,
 ): Promise<Array<ConsumptionDataPoint>> {
   const command = {
     TableName: env.CONSUMPTION_TABLE,
@@ -35,7 +35,7 @@ export async function getConsumptionData(
 
   const paginator = paginateQuery(
     { client: DYNAMO_CLIENT, pageSize: 1000 },
-    command
+    command,
   );
 
   const results: Array<ConsumptionDataPoint> = [];

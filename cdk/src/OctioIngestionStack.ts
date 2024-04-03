@@ -12,7 +12,7 @@ export default class OctioIngestionStack extends Stack {
     {
       consumptionTable,
       gridTable,
-    }: { consumptionTable: ITable; gridTable: ITable }
+    }: { consumptionTable: ITable; gridTable: ITable },
   ) {
     super(scope, id);
 
@@ -29,7 +29,7 @@ export default class OctioIngestionStack extends Stack {
           OCTOPUS_GAS_MPRN: env.OCTOPUS_GAS_MPRN,
           OCTOPUS_GAS_SERIAL: env.OCTOPUS_GAS_SERIAL,
         },
-      }
+      },
     );
 
     consumptionTable.grantReadWriteData(ingestConsumptionLambda.lambda);
@@ -57,12 +57,12 @@ export default class OctioIngestionStack extends Stack {
       {
         entry: path.join(
           __dirname,
-          "../../gap-checker-consumption/dist/index.js"
+          "../../gap-checker-consumption/dist/index.js",
         ),
         environment: {
           CONSUMPTION_TABLE: consumptionTable.tableName,
         },
-      }
+      },
     );
 
     consumptionTable.grantReadData(gapCheckerConsumptionLambda.lambda);
