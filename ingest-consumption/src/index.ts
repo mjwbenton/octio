@@ -11,6 +11,7 @@ import { parseISO } from "date-fns/parseISO";
 
 const DYNAMO_CLIENT = new DynamoDBClient({});
 const CHUNK_SIZE = 25;
+const DAYS_TO_FETCH = 14;
 
 const OCTOPUS_PAGE_SIZE = 25_000;
 
@@ -52,7 +53,7 @@ export async function handler(event: Event) {
 }
 
 function datesFromEvent(event: Event): { from: Date; to: Date } {
-  const defaultFrom = subDays(new Date(), 7);
+  const defaultFrom = subDays(new Date(), DAYS_TO_FETCH);
   const defaultTo = new Date();
   if (eventIsApiEvent(event)) {
     const query = event.queryStringParameters;
