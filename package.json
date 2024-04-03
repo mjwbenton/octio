@@ -5,6 +5,7 @@
     "graphql",
     "ingest-consumption",
     "ingest-grid",
+    "gap-checker-consumption",
     "cdk"
   ],
   "scripts": {
