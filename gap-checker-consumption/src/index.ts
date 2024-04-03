@@ -17,9 +17,16 @@ enum EnergyType {
 const CONFIGURATION = {
   [EnergyType.ELECTRICITY]: {
     firstPeriod: parseISO("2024-02-14T23:30:00Z"),
+    exceptions: [],
   },
   [EnergyType.GAS]: {
     firstPeriod: parseISO("2024-02-28T00:00:00Z"),
+    exceptions: [
+      ...generateDateList(
+        parseISO("2024-03-11T22:30:00.000Z"),
+        parseISO("2024-03-14T23:30:00.000Z"),
+      ),
+    ],
   },
 } as const;
 
@@ -84,10 +91,15 @@ async function fetchConsumptionDates(
 async function checkType(type: EnergyType) {
   const { startDate, endDate } = datesToCheck(type);
   const generatedDates = generateDateList(startDate, endDate);
+  const exceptionsLookup = new Set(
+    CONFIGURATION[type].exceptions.map((date) => formatISO(date)),
+  );
   const dataDates = await fetchConsumptionDates(type, startDate, endDate);
   const dataDatesLookup = new Set(dataDates.map((date) => formatISO(date)));
   const missingDates = generatedDates.filter(
-    (date) => !dataDatesLookup.has(formatISO(date)),
+    (date) =>
+      !dataDatesLookup.has(formatISO(date)) &&
+      !exceptionsLookup.has(formatISO(date)),
   );
   console.log(
     `Missing ${missingDates.length} dates for ${type}: ${JSON.stringify(missingDates, null, 2)}`,
