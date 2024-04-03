@@ -1,6 +1,7 @@
 {
   "name": "@mattb.tech/octio-cdk",
   "private": true,
+  "license": "UNLICENSED",
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {

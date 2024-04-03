@@ -1,6 +1,7 @@
 {
   "name": "@mattb.tech/octio",
   "private": true,
+  "license": "UNLICENSED",
   "workspaces": [
     "graphql",
     "ingest-consumption",
