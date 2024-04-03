@@ -49,7 +49,7 @@ function datesToCheck(type: EnergyType) {
 function generateDateList(startDate: Date, endDate: Date): Array<Date> {
   const periods = [];
   let currentPeriod = startDate;
-  while (currentPeriod < endDate) {
+  while (currentPeriod <= endDate) {
     periods.push(currentPeriod);
     currentPeriod = addMinutes(currentPeriod, 30);
   }
