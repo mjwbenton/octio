@@ -7,7 +7,7 @@ import { addMinutes } from "date-fns";
 
 const DYNAMO_CLIENT = new DynamoDBClient({});
 
-const CUSHION_DAYS = 7;
+const CUSHION_DAYS = 13;
 
 enum EnergyType {
   ELECTRICITY = "ELECTRICITY",
@@ -17,7 +17,12 @@ enum EnergyType {
 const CONFIGURATION = {
   [EnergyType.ELECTRICITY]: {
     firstPeriod: parseISO("2024-02-14T23:30:00Z"),
-    exceptions: [],
+    exceptions: [
+      ...generateDateList(
+        parseISO("2024-04-01T06:00:00.000Z"),
+        parseISO("2024-04-01T06:30:00.000Z"),
+      ),
+    ],
   },
   [EnergyType.GAS]: {
     firstPeriod: parseISO("2024-02-28T00:00:00Z"),
@@ -25,6 +30,10 @@ const CONFIGURATION = {
       ...generateDateList(
         parseISO("2024-03-11T22:30:00.000Z"),
         parseISO("2024-03-14T23:30:00.000Z"),
+      ),
+      ...generateDateList(
+        parseISO("2024-04-01T06:00:00.000Z"),
+        parseISO("2024-04-01T06:30:00.000Z"),
       ),
     ],
   },
