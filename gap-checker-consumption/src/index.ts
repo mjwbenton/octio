@@ -26,6 +26,10 @@ const CONFIGURATION = {
         parseISO("2024-04-04T06:00:00.000Z"),
         parseISO("2024-04-04T06:30:00.000Z"),
       ),
+      ...generateDateList(
+        parseISO("2024-04-04T18:00:00.000Z"),
+        parseISO("2024-04-04T18:30:00.000Z"),
+      ),
     ],
   },
   [EnergyType.GAS]: {
