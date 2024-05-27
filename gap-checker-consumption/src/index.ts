@@ -177,5 +177,11 @@ async function checkType(type: EnergyType) {
   console.log(
     `Missing ${missingDates.length} dates for ${type}: ${JSON.stringify(missingDates, null, 2)}`,
   );
-  return missingDates.length;
+  const unneededExceptionDates = dataDates.filter((date) =>
+    exceptionsLookup.has(formatISO(date)),
+  );
+  console.log(
+    `Uneeded ${unneededExceptionDates.length} exception dates that are not needed for ${type}: ${JSON.stringify(unneededExceptionDates, null, 2)}`,
+  );
+  return missingDates.length + unneededExceptionDates.length;
 }
