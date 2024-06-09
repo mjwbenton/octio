@@ -41,7 +41,7 @@ export async function fetchMeterMini({
       startDate: formatISO(parseISO(item.readAt)),
       endDate: formatISO(addMinutes(parseISO(item.readAt), 30)),
       consumption: item.consumptionDelta / CONVERSION_FACTOR,
-    })
+    }),
   );
   return [electricity, gas].flat();
 }
@@ -49,7 +49,7 @@ export async function fetchMeterMini({
 async function query(
   query: DocumentNode,
   variables: Record<string, string>,
-  authToken?: string
+  authToken?: string,
 ): Promise<any> {
   const response = await fetch(ENDPOINT, {
     method: "POST",

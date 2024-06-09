@@ -28,7 +28,7 @@ type InputDataType = {
 
 async function fetchType(
   type: EnergyType,
-  { from, to }: { from: Date; to: Date }
+  { from, to }: { from: Date; to: Date },
 ): Promise<Array<ConsumptionPoint>> {
   const url = `${ENERGY_TYPE_CONFIG[type].endpoint}?page_size=${OCTOPUS_PAGE_SIZE}&period_from=${formatISO(from)}&period_to=${formatISO(to)}`;
   console.log(`Fetching ${type} data from ${url}`);

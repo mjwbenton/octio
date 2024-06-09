@@ -43,13 +43,13 @@ async function writeData(data: Array<ConsumptionPoint>) {
                 },
               })),
             },
-          })
+          }),
         );
       } catch (e) {
         throw new Error(
-          `Failed on chunk containing data: ${JSON.stringify(batch, null, 2)}`
+          `Failed on chunk containing data: ${JSON.stringify(batch, null, 2)}`,
         );
       }
-    })
+    }),
   );
 }
