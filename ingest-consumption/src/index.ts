@@ -6,7 +6,8 @@ import env from "./env";
 import chunk from "lodash.chunk";
 import { Event, datesFromEvent } from "./event";
 import { EnergyType } from "./energyType";
-import { ConsumptionPoint, fetchMeterDirect } from "./meter-direct";
+import { fetchMeterDirect } from "./meter-direct";
+import { ConsumptionPoint } from "./consumptionPoint";
 
 const DYNAMO_CLIENT = new DynamoDBClient({});
 const CHUNK_SIZE = 25;
@@ -22,7 +23,7 @@ export async function handler(event: Event) {
 
 async function importType(
   type: EnergyType,
-  { from, to }: { from: Date; to: Date },
+  { from, to }: { from: Date; to: Date }
 ) {
   const results = await fetchMeterDirect(type, { from, to });
   console.log(`Fetched ${results.length} ${type} data points`);
@@ -48,13 +49,13 @@ async function writeData(data: Array<ConsumptionPoint>) {
                 },
               })),
             },
-          }),
+          })
         );
       } catch (e) {
         throw new Error(
-          `Failed on chunk containing data: ${JSON.stringify(batch, null, 2)}`,
+          `Failed on chunk containing data: ${JSON.stringify(batch, null, 2)}`
         );
       }
-    }),
+    })
   );
 }

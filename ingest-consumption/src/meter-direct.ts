@@ -1,6 +1,7 @@
 import { formatISO } from "date-fns";
 import { EnergyType } from "./energyType";
 import env from "./env";
+import { ConsumptionPoint } from "./consumptionPoint";
 
 const ENERGY_TYPE_CONFIG = {
   ELECTRICITY: {
@@ -23,16 +24,9 @@ type InputDataType = {
   consumption: number;
 };
 
-export type ConsumptionPoint = {
-  energyType: EnergyType;
-  startDate: string;
-  endDate: string;
-  consumption: number;
-};
-
 export async function fetchMeterDirect(
   type: EnergyType,
-  { from, to }: { from: Date; to: Date },
+  { from, to }: { from: Date; to: Date }
 ): Promise<Array<ConsumptionPoint>> {
   const url = `${ENERGY_TYPE_CONFIG[type].endpoint}?page_size=${OCTOPUS_PAGE_SIZE}&period_from=${formatISO(from)}&period_to=${formatISO(to)}`;
   console.log(`Fetching ${type} data from ${url}`);
