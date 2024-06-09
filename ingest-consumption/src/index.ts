@@ -6,7 +6,7 @@ import env from "./env";
 import chunk from "lodash.chunk";
 import { Event, datesFromEvent } from "./event";
 import { EnergyType } from "./energyType";
-import { fetchMeterDirect } from "./meter-direct";
+import { fetchMeterDirect } from "./meterDirect";
 import { ConsumptionPoint } from "./consumptionPoint";
 
 const DYNAMO_CLIENT = new DynamoDBClient({});
