@@ -45,6 +45,7 @@ async function writeData(data: Array<ConsumptionPoint>) {
                     startDate: { S: item.startDate },
                     endDate: { S: item.endDate },
                     consumption: { N: item.consumption.toString() },
+                    source: { S: item.source },
                   },
                 },
               })),

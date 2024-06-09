@@ -3,6 +3,8 @@ import { EnergyType } from "./energyType";
 import env from "./env";
 import { ConsumptionPoint } from "./consumptionPoint";
 
+const CONSUMPTION_SOURCE = "DIRECT";
+
 const ENERGY_TYPE_CONFIG = {
   ELECTRICITY: {
     endpoint: `https://api.octopus.energy/v1/electricity-meter-points/${env.OCTOPUS_ELECTRICITY_MPAN}/meters/${env.OCTOPUS_ELECTRICITY_SERIAL}/consumption/`,
@@ -39,5 +41,6 @@ export async function fetchMeterDirect(
     startDate: formatISO(parseISO(item.interval_start)),
     endDate: formatISO(parseISO(item.interval_end)),
     consumption: item.consumption,
+    source: CONSUMPTION_SOURCE,
   }));
 }
