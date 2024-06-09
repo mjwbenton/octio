@@ -26,7 +26,7 @@ type InputDataType = {
   consumption: number;
 };
 
-export async function fetchMeterDirect(
+async function fetchType(
   type: EnergyType,
   { from, to }: { from: Date; to: Date }
 ): Promise<Array<ConsumptionPoint>> {
@@ -43,4 +43,18 @@ export async function fetchMeterDirect(
     consumption: item.consumption,
     source: CONSUMPTION_SOURCE,
   }));
+}
+
+export async function fetchMeterDirect({
+  from,
+  to,
+}: {
+  from: Date;
+  to: Date;
+}): Promise<Array<ConsumptionPoint>> {
+  const [electricity, gas] = await Promise.all([
+    fetchType("ELECTRICITY", { from, to }),
+    fetchType("GAS", { from, to }),
+  ]);
+  return electricity.concat(gas);
 }
