@@ -23,7 +23,6 @@ export const GET_CONSUMPTION = gql`
     ) {
       readAt
       consumptionDelta
-      demand
     }
     gas: smartMeterTelemetry(
       deviceId: $gasDeviceId
@@ -33,7 +32,6 @@ export const GET_CONSUMPTION = gql`
     ) {
       readAt
       consumptionDelta
-      demand
     }
   }
 `;
