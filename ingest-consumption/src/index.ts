@@ -5,8 +5,8 @@ import {
 import env from "./env";
 import chunk from "lodash.chunk";
 import { Event, datesFromEvent } from "./event";
-import { fetchMeterDirect } from "./meterDirect";
 import { ConsumptionPoint } from "./consumptionPoint";
+import { fetchMeterMini } from "./meterMini";
 
 const DYNAMO_CLIENT = new DynamoDBClient({});
 const CHUNK_SIZE = 25;
@@ -18,7 +18,7 @@ export async function handler(event: Event) {
 }
 
 async function importDirect({ from, to }: { from: Date; to: Date }) {
-  const results = await fetchMeterDirect({ from, to });
+  const results = await fetchMeterMini({ from, to });
   console.log(`Fetched ${results.length} data points`);
   console.log(JSON.stringify(results, null, 2));
   await writeData(results);
