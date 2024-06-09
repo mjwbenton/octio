@@ -1,4 +1,4 @@
-import { formatISO } from "date-fns";
+import { formatISO, parseISO } from "date-fns";
 import { EnergyType } from "./energyType";
 import env from "./env";
 import { ConsumptionPoint } from "./consumptionPoint";
@@ -36,8 +36,8 @@ export async function fetchMeterDirect(
   const result = (await response.json()) as { results: Array<InputDataType> };
   return result.results.map((item) => ({
     energyType: type,
-    startDate: item.interval_start,
-    endDate: item.interval_end,
+    startDate: formatISO(parseISO(item.interval_start)),
+    endDate: formatISO(parseISO(item.interval_end)),
     consumption: item.consumption,
   }));
 }
