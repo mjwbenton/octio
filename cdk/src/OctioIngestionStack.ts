@@ -28,6 +28,8 @@ export default class OctioIngestionStack extends Stack {
           OCTOPUS_ELECTRICITY_SERIAL: env.OCTOPUS_ELECTRICITY_SERIAL,
           OCTOPUS_GAS_MPRN: env.OCTOPUS_GAS_MPRN,
           OCTOPUS_GAS_SERIAL: env.OCTOPUS_GAS_SERIAL,
+          OCTOPUS_ELECTRICITY_DEVICE_ID: env.OCTOPUS_ELECTRICITY_DEVICE_ID,
+          OCTOPUS_GAS_DEVICE_ID: env.OCTOPUS_GAS_DEVICE_ID,
         },
       },
     );
