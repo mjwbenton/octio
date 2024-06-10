@@ -17,7 +17,6 @@ export async function fetchMeterMini({
 }): Promise<Array<ConsumptionPoint>> {
   const tokenResponse = await query(GET_JWT, { apiKey: env.OCTOPUS_API_KEY });
   const token = tokenResponse.data?.obtainKrakenToken.token;
-  console.log("Token response:", JSON.stringify(tokenResponse, null, 2));
   if (!token) {
     throw new Error("Failed to obtain token");
   }
@@ -27,6 +26,7 @@ export async function fetchMeterMini({
     electricityDeviceId: env.OCTOPUS_ELECTRICITY_DEVICE_ID,
     gasDeviceId: env.OCTOPUS_GAS_DEVICE_ID,
   });
+  console.log("Response: ", JSON.stringify(dataResponse, null, 2));
   const electricity: Array<ConsumptionPoint> =
     dataResponse.data?.electricity.map((item: any) => ({
       source: "MINI",
