@@ -52,6 +52,7 @@ async function query(
   variables: Record<string, string>,
   authToken?: string,
 ): Promise<any> {
+  console.log("Querying", { query: query.loc!.source.body, variables });
   const response = await fetch(ENDPOINT, {
     method: "POST",
     headers: {
