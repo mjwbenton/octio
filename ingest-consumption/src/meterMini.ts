@@ -6,7 +6,7 @@ import { DocumentNode } from "graphql";
 
 const CONVERSION_FACTOR = 1_000;
 
-const ENDPOINT = "https://api.octopus.energy/v1/graphql";
+const ENDPOINT = "https://api.octopus.energy/v1/graphql/";
 
 export async function fetchMeterMini({
   from,
