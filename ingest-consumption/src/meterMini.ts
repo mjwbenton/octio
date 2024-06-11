@@ -20,12 +20,16 @@ export async function fetchMeterMini({
   if (!token) {
     throw new Error("Failed to obtain token");
   }
-  const dataResponse = await query(GET_CONSUMPTION, {
-    startDate: formatISO(from),
-    endDate: formatISO(to),
-    electricityDeviceId: env.OCTOPUS_ELECTRICITY_DEVICE_ID,
-    gasDeviceId: env.OCTOPUS_GAS_DEVICE_ID,
-  });
+  const dataResponse = await query(
+    GET_CONSUMPTION,
+    {
+      startDate: formatISO(from),
+      endDate: formatISO(to),
+      electricityDeviceId: env.OCTOPUS_ELECTRICITY_DEVICE_ID,
+      gasDeviceId: env.OCTOPUS_GAS_DEVICE_ID,
+    },
+    token
+  );
   console.log("Response: ", JSON.stringify(dataResponse, null, 2));
   const electricity: Array<ConsumptionPoint> =
     dataResponse.data?.electricity.map((item: any) => ({
@@ -42,7 +46,7 @@ export async function fetchMeterMini({
       startDate: formatISO(parseISO(item.readAt)),
       endDate: formatISO(addMinutes(parseISO(item.readAt), 30)),
       consumption: item.consumptionDelta / CONVERSION_FACTOR,
-    }),
+    })
   );
   return [electricity, gas].flat();
 }
@@ -50,7 +54,7 @@ export async function fetchMeterMini({
 async function query(
   query: DocumentNode,
   variables: Record<string, string>,
-  authToken?: string,
+  authToken?: string
 ): Promise<any> {
   console.log("Querying", { query: query.loc!.source.body, variables });
   const response = await fetch(ENDPOINT, {
