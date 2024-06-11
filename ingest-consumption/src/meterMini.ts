@@ -1,4 +1,4 @@
-import { addMinutes, formatISO, parseISO } from "date-fns";
+import { addDays, addMinutes, formatISO, isBefore, parseISO } from "date-fns";
 import { ConsumptionPoint } from "./consumptionPoint";
 import env from "./env";
 import { GET_CONSUMPTION, GET_JWT } from "./queries";
@@ -20,15 +20,39 @@ export async function fetchMeterMini({
   if (!token) {
     throw new Error("Failed to obtain token");
   }
+
+  const consumptionPoints = [];
+  let currentFrom = from;
+  let currentTo = from;
+  let more = true;
+  while (more) {
+    currentFrom = currentTo;
+    currentTo = addDays(currentTo, 3);
+    if (isBefore(to, currentTo)) {
+      currentTo = to;
+      more = false;
+    }
+    const data = await queryConsumption(currentFrom, currentTo, token);
+    consumptionPoints.push(...data);
+  }
+
+  return await queryConsumption(from, to, token);
+}
+
+async function queryConsumption(
+  startDate: Date,
+  endDate: Date,
+  authToken: string,
+) {
   const dataResponse = await query(
     GET_CONSUMPTION,
     {
-      startDate: formatISO(from),
-      endDate: formatISO(to),
+      startDate: formatISO(startDate),
+      endDate: formatISO(endDate),
       electricityDeviceId: env.OCTOPUS_ELECTRICITY_DEVICE_ID,
       gasDeviceId: env.OCTOPUS_GAS_DEVICE_ID,
     },
-    token,
+    authToken,
   );
   console.log("Response: ", JSON.stringify(dataResponse, null, 2));
   const electricity: Array<ConsumptionPoint> =
