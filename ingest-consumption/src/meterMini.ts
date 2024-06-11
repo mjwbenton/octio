@@ -56,16 +56,11 @@ async function query(
   variables: Record<string, string>,
   authToken?: string,
 ): Promise<any> {
-  console.log(
-    "Querying",
-    { query: query.loc!.source.body, variables },
-    authToken,
-  );
   const response = await fetch(ENDPOINT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      ...(authToken ? { Authorization: `Bearer JWT ${authToken}` } : {}),
+      ...(authToken ? { Authorization: `JWT ${authToken}` } : {}),
     },
     body: JSON.stringify({ query: query.loc!.source.body, variables }),
   });
