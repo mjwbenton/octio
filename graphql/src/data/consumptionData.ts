@@ -1,6 +1,5 @@
 import { DynamoDBClient, paginateQuery } from "@aws-sdk/client-dynamodb";
 import env from "../env";
-import { formatISO } from "date-fns/formatISO";
 import { parseISO } from "date-fns/parseISO";
 
 const DYNAMO_CLIENT = new DynamoDBClient({});
@@ -28,8 +27,8 @@ export async function getConsumptionData(
       "energyType = :energyType and startDate between :start and :end",
     ExpressionAttributeValues: {
       ":energyType": { S: energyType },
-      ":start": { S: formatISO(startDate) },
-      ":end": { S: formatISO(endDate) },
+      ":start": { S: startDate.toISOString() },
+      ":end": { S: endDate.toISOString() },
     },
   };
 
