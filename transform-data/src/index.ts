@@ -1,11 +1,10 @@
+import { DynamoDBClient, ScanCommandInput } from "@aws-sdk/client-dynamodb";
 import {
-  DynamoDBClient,
-  ScanCommand,
-  ScanCommandInput,
-  PutItemCommand,
-  PutItemCommandInput,
-} from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocumentClient, paginateScan } from "@aws-sdk/lib-dynamodb";
+  DynamoDBDocumentClient,
+  paginateScan,
+  PutCommand,
+  PutCommandInput,
+} from "@aws-sdk/lib-dynamodb";
 import { parseISO } from "date-fns";
 
 const client = new DynamoDBClient({});
@@ -41,13 +40,12 @@ async function scanTable(): Promise<Record<string, any>[]> {
 }
 
 async function writeItem(item: Record<string, any>): Promise<void> {
-  console.log("Would write item:", item);
-  const params: PutItemCommandInput = {
+  const params: PutCommandInput = {
     TableName: tableName,
     Item: item,
   };
 
-  await docClient.send(new PutItemCommand(params));
+  await docClient.send(new PutCommand(params));
 }
 
 async function main() {
