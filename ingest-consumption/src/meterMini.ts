@@ -56,14 +56,14 @@ async function queryConsumption(
   );
   console.log("Response: ", JSON.stringify(dataResponse, null, 2));
   const electricity: Array<ConsumptionPoint> =
-    dataResponse.data?.electricity.map((item: any) => ({
+    dataResponse.data?.electricity?.map((item: any) => ({
       source: "MINI",
       energyType: "ELECTRICITY",
       startDate: formatISO(parseISO(item.readAt)),
       endDate: formatISO(addMinutes(parseISO(item.readAt), 30)),
       consumption: item.consumptionDelta / CONVERSION_FACTOR,
     }));
-  const gas: Array<ConsumptionPoint> = dataResponse.data?.gas.map(
+  const gas: Array<ConsumptionPoint> = dataResponse.data?.gas?.map(
     (item: any) => ({
       source: "MINI",
       energyType: "GAS",
