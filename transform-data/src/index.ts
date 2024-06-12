@@ -60,7 +60,7 @@ async function main() {
     }
 
     console.log(
-      "All items have been transformed and written back to the table."
+      "All items have been transformed and written back to the table.",
     );
   } catch (error) {
     console.error("An error occurred:", error);
