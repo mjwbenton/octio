@@ -36,7 +36,7 @@ export async function fetchMeterMini({
     consumptionPoints.push(...data);
   }
 
-  return await queryConsumption(from, to, token);
+  return consumptionPoints;
 }
 
 async function queryConsumption(
@@ -62,16 +62,15 @@ async function queryConsumption(
       startDate: formatISO(parseISO(item.readAt)),
       endDate: formatISO(addMinutes(parseISO(item.readAt), 30)),
       consumption: item.consumptionDelta / CONVERSION_FACTOR,
-    }));
-  const gas: Array<ConsumptionPoint> = dataResponse.data?.gas?.map(
-    (item: any) => ({
+    })) ?? [];
+  const gas: Array<ConsumptionPoint> =
+    dataResponse.data?.gas?.map((item: any) => ({
       source: "MINI",
       energyType: "GAS",
       startDate: formatISO(parseISO(item.readAt)),
       endDate: formatISO(addMinutes(parseISO(item.readAt), 30)),
       consumption: item.consumptionDelta / CONVERSION_FACTOR,
-    }),
-  );
+    })) ?? [];
   return [electricity, gas].flat();
 }
 
