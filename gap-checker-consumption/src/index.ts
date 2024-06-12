@@ -24,27 +24,27 @@ const CONFIGURATION = {
     exceptions: [
       ...generateDateList(
         parseISO("2024-03-11T22:30:00.000Z"),
-        parseISO("2024-03-14T23:30:00.000Z")
+        parseISO("2024-03-14T23:30:00.000Z"),
       ),
       ...generateDateList(
         parseISO("2024-04-01T15:30:00.000Z"),
-        parseISO("2024-04-03T23:30:00.000Z")
+        parseISO("2024-04-03T23:30:00.000Z"),
       ),
       ...generateDateList(
         parseISO("2024-04-21T16:00:00.000Z"),
-        parseISO("2024-04-23T23:30:00.000Z")
+        parseISO("2024-04-23T23:30:00.000Z"),
       ),
       ...generateDateList(
         parseISO("2024-05-09T18:00:00.000Z"),
-        parseISO("2024-05-09T18:30:00.000Z")
+        parseISO("2024-05-09T18:30:00.000Z"),
       ),
       ...generateDateList(
         parseISO("2024-05-13T12:00:00.000Z"),
-        parseISO("2024-05-13T12:30:00.000Z")
+        parseISO("2024-05-13T12:30:00.000Z"),
       ),
       ...generateDateList(
         parseISO("2024-05-13T18:00:00.000Z"),
-        parseISO("2024-05-13T18:30:00.000Z")
+        parseISO("2024-05-13T18:30:00.000Z"),
       ),
     ],
   },
@@ -79,7 +79,7 @@ function generateDateList(startDate: Date, endDate: Date): Array<Date> {
 async function fetchConsumptionDates(
   energyType: EnergyType,
   startDate: Date,
-  endDate: Date
+  endDate: Date,
 ): Promise<Array<Date>> {
   const command = {
     TableName: env.CONSUMPTION_TABLE,
@@ -94,7 +94,7 @@ async function fetchConsumptionDates(
 
   const paginator = paginateQuery(
     { client: DYNAMO_CLIENT, pageSize: 1000 },
-    command
+    command,
   );
 
   const dates: Array<Date> = [];
@@ -112,23 +112,23 @@ async function checkType(type: EnergyType) {
   const { startDate, endDate } = datesToCheck(type);
   const generatedDates = generateDateList(startDate, endDate);
   const exceptionsLookup = new Set(
-    CONFIGURATION[type].exceptions.map((date) => formatISO(date))
+    CONFIGURATION[type].exceptions.map((date) => formatISO(date)),
   );
   const dataDates = await fetchConsumptionDates(type, startDate, endDate);
   const dataDatesLookup = new Set(dataDates.map((date) => formatISO(date)));
   const missingDates = generatedDates.filter(
     (date) =>
       !dataDatesLookup.has(formatISO(date)) &&
-      !exceptionsLookup.has(formatISO(date))
+      !exceptionsLookup.has(formatISO(date)),
   );
   console.log(
-    `Missing ${missingDates.length} dates for ${type}: ${JSON.stringify(missingDates, null, 2)}`
+    `Missing ${missingDates.length} dates for ${type}: ${JSON.stringify(missingDates, null, 2)}`,
   );
   const unneededExceptionDates = dataDates.filter((date) =>
-    exceptionsLookup.has(formatISO(date))
+    exceptionsLookup.has(formatISO(date)),
   );
   console.log(
-    `Uneeded ${unneededExceptionDates.length} exception dates that are not needed for ${type}: ${JSON.stringify(unneededExceptionDates, null, 2)}`
+    `Uneeded ${unneededExceptionDates.length} exception dates that are not needed for ${type}: ${JSON.stringify(unneededExceptionDates, null, 2)}`,
   );
   return missingDates.length + unneededExceptionDates.length;
 }
