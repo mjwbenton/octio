@@ -47,8 +47,8 @@ async function queryConsumption(
   const dataResponse = await query(
     GET_CONSUMPTION,
     {
-      startDate: formatISO(startDate),
-      endDate: formatISO(endDate),
+      startDate: startDate.toISOString(),
+      endDate: endDate.toISOString(),
       electricityDeviceId: env.OCTOPUS_ELECTRICITY_DEVICE_ID,
       gasDeviceId: env.OCTOPUS_GAS_DEVICE_ID,
     },
@@ -59,16 +59,16 @@ async function queryConsumption(
     dataResponse.data?.electricity?.map((item: any) => ({
       source: "MINI",
       energyType: "ELECTRICITY",
-      startDate: formatISO(parseISO(item.readAt)),
-      endDate: formatISO(addMinutes(parseISO(item.readAt), 30)),
+      startDate: parseISO(item.readAt).toISOString(),
+      endDate: addMinutes(parseISO(item.readAt), 30).toISOString(),
       consumption: item.consumptionDelta / CONVERSION_FACTOR,
     })) ?? [];
   const gas: Array<ConsumptionPoint> =
     dataResponse.data?.gas?.map((item: any) => ({
       source: "MINI",
       energyType: "GAS",
-      startDate: formatISO(parseISO(item.readAt)),
-      endDate: formatISO(addMinutes(parseISO(item.readAt), 30)),
+      startDate: parseISO(item.readAt).toISOString(),
+      endDate: addMinutes(parseISO(item.readAt), 30).toISOString(),
       consumption: item.consumptionDelta / CONVERSION_FACTOR,
     })) ?? [];
   return [electricity, gas].flat();

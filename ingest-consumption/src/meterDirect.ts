@@ -1,4 +1,4 @@
-import { formatISO, parseISO } from "date-fns";
+import { parseISO } from "date-fns";
 import { EnergyType } from "./energyType";
 import env from "./env";
 import { ConsumptionPoint } from "./consumptionPoint";
@@ -30,7 +30,7 @@ async function fetchType(
   type: EnergyType,
   { from, to }: { from: Date; to: Date },
 ): Promise<Array<ConsumptionPoint>> {
-  const url = `${ENERGY_TYPE_CONFIG[type].endpoint}?page_size=${OCTOPUS_PAGE_SIZE}&period_from=${formatISO(from)}&period_to=${formatISO(to)}`;
+  const url = `${ENERGY_TYPE_CONFIG[type].endpoint}?page_size=${OCTOPUS_PAGE_SIZE}&period_from=${from.toISOString()}&period_to=${to.toISOString()}`;
   console.log(`Fetching ${type} data from ${url}`);
   const response = await fetch(url, {
     headers: HEADERS,
@@ -38,8 +38,8 @@ async function fetchType(
   const result = (await response.json()) as { results: Array<InputDataType> };
   return result.results.map((item) => ({
     energyType: type,
-    startDate: formatISO(parseISO(item.interval_start)),
-    endDate: formatISO(parseISO(item.interval_end)),
+    startDate: parseISO(item.interval_start).toISOString(),
+    endDate: parseISO(item.interval_end).toISOString(),
     consumption: item.consumption,
     source: CONSUMPTION_SOURCE,
   }));
