@@ -18,7 +18,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.521.0",
+    "@aws-sdk/client-dynamodb": "^3.596.0",
     "date-fns": "^3.6.0",
     "envalid": "^8.0.0",
     "graphql": "^16.8.1",
