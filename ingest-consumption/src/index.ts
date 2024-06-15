@@ -20,7 +20,6 @@ export async function handler(event: Event) {
 async function importDirect({ from, to }: { from: Date; to: Date }) {
   const results = await fetchMeterMini({ from, to });
   console.log(`Fetched ${results.length} data points`);
-  console.log(JSON.stringify(results, null, 2));
   await writeData(results);
 }
 

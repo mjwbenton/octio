@@ -54,7 +54,6 @@ async function queryConsumption(
     },
     authToken,
   );
-  console.log("Response: ", JSON.stringify(dataResponse, null, 2));
   const electricity: Array<ConsumptionPoint> =
     dataResponse.data?.electricity?.map((item: any) => ({
       source: "MINI",
