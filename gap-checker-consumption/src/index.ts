@@ -91,7 +91,6 @@ async function fetchConsumptionDates(
 
   const dates: Array<Date> = [];
   for await (const page of paginator) {
-    console.log(`Processing page with last item ${page.LastEvaluatedKey}`);
     page.Items?.forEach((val) => {
       dates.push(parseISO(val.startDate.S!));
     });
