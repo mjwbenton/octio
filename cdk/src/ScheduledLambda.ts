@@ -43,7 +43,7 @@ export default class ScheduledLambda extends Construct {
           NODE_ENV: "production",
         },
       },
-      timeout: Duration.minutes(1),
+      timeout: Duration.minutes(2),
       runtime: Runtime.NODEJS_20_X,
       memorySize: 2048,
       environment,
