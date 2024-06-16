@@ -7,8 +7,7 @@
     "ingest-consumption",
     "ingest-grid",
     "gap-checker-consumption",
-    "cdk",
-    "transform-data"
+    "cdk"
   ],
   "scripts": {
     "deploy": "yarn workspace @mattb.tech/octio-cdk run deploy",
