@@ -1,12 +1,16 @@
-import { addDays, addMinutes, formatISO, isBefore, parseISO } from "date-fns";
+import { addDays, addMinutes, isBefore, parseISO } from "date-fns";
 import { ConsumptionPoint } from "./consumptionPoint";
 import env from "./env";
 import { GET_CONSUMPTION, GET_JWT } from "./queries";
-import { DocumentNode } from "graphql";
+import {
+  GetConsumptionDataQuery,
+  GetConsumptionDataQueryVariables,
+  GetJwtMutation,
+} from "./generated/graphql";
+import { query } from "./graphqlQuery";
+import { EnergyType } from "./energyType";
 
 const CONVERSION_FACTOR = 1_000;
-
-const ENDPOINT = "https://api.octopus.energy/v1/graphql/";
 
 export async function fetchMeterMini({
   from,
@@ -15,8 +19,10 @@ export async function fetchMeterMini({
   from: Date;
   to: Date;
 }): Promise<Array<ConsumptionPoint>> {
-  const tokenResponse = await query(GET_JWT, { apiKey: env.OCTOPUS_API_KEY });
-  const token = tokenResponse.data?.obtainKrakenToken.token;
+  const tokenResponse = await query<GetJwtMutation>(GET_JWT, {
+    apiKey: env.OCTOPUS_API_KEY,
+  });
+  const token = tokenResponse.obtainKrakenToken?.token;
   if (!token) {
     throw new Error("Failed to obtain token");
   }
@@ -44,48 +50,40 @@ async function queryConsumption(
   endDate: Date,
   authToken: string,
 ) {
-  const dataResponse = await query(
+  const dataResponse = await query<GetConsumptionDataQuery>(
     GET_CONSUMPTION,
     {
       startDate: startDate.toISOString(),
       endDate: endDate.toISOString(),
       electricityDeviceId: env.OCTOPUS_ELECTRICITY_DEVICE_ID,
       gasDeviceId: env.OCTOPUS_GAS_DEVICE_ID,
-    },
+    } satisfies GetConsumptionDataQueryVariables,
     authToken,
   );
-  const electricity: Array<ConsumptionPoint> =
-    dataResponse.data?.electricity?.map((item: any) => ({
-      source: "MINI",
-      energyType: "ELECTRICITY",
-      startDate: parseISO(item.readAt).toISOString(),
-      endDate: addMinutes(parseISO(item.readAt), 30).toISOString(),
-      consumption: item.consumptionDelta / CONVERSION_FACTOR,
-    })) ?? [];
-  const gas: Array<ConsumptionPoint> =
-    dataResponse.data?.gas?.map((item: any) => ({
-      source: "MINI",
-      energyType: "GAS",
-      startDate: parseISO(item.readAt).toISOString(),
-      endDate: addMinutes(parseISO(item.readAt), 30).toISOString(),
-      consumption: item.consumptionDelta / CONVERSION_FACTOR,
-    })) ?? [];
-  return [electricity, gas].flat();
+  const electricity: Array<ConsumptionPoint | null> =
+    dataResponse.electricity?.map((item) =>
+      item ? graphqlToConsumptionPoint("ELECTRICITY", item) : null,
+    ) ?? [];
+  const gas: Array<ConsumptionPoint | null> =
+    dataResponse.gas?.map((item) =>
+      item ? graphqlToConsumptionPoint("GAS", item) : null,
+    ) ?? [];
+  return [electricity, gas]
+    .flat()
+    .filter((item) => item != null) as Array<ConsumptionPoint>;
 }
 
-async function query(
-  query: DocumentNode,
-  variables: Record<string, string>,
-  authToken?: string,
-): Promise<any> {
-  const response = await fetch(ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      ...(authToken ? { Authorization: `JWT ${authToken}` } : {}),
-    },
-    body: JSON.stringify({ query: query.loc!.source.body, variables }),
-  });
-
-  return response.json();
+function graphqlToConsumptionPoint(
+  energyType: EnergyType,
+  graphqlItem: NonNullable<
+    NonNullable<GetConsumptionDataQuery["electricity"]>[number]
+  >,
+): ConsumptionPoint {
+  return {
+    source: "MINI",
+    energyType,
+    startDate: parseISO(graphqlItem.readAt).toISOString(),
+    endDate: addMinutes(parseISO(graphqlItem.readAt), 30).toISOString(),
+    consumption: graphqlItem.consumptionDelta / CONVERSION_FACTOR,
+  };
 }
