@@ -1,11 +1,10 @@
 import { DynamoDBClient, ScanCommandInput } from "@aws-sdk/client-dynamodb";
 import {
+  DeleteCommand,
+  DeleteCommandInput,
   DynamoDBDocumentClient,
   paginateScan,
-  PutCommand,
-  PutCommandInput,
 } from "@aws-sdk/lib-dynamodb";
-import { parseISO } from "date-fns";
 
 const client = new DynamoDBClient({});
 const docClient = DynamoDBDocumentClient.from(client);
@@ -13,16 +12,6 @@ const tableName = process.env.TABLE_NAME;
 
 if (!tableName) {
   throw new Error("Table name not set");
-}
-
-// Modify this for new transformations
-function transformItem(item: Record<string, any>): Record<string, any> {
-  return {
-    ...item,
-    source: item.source ?? "DIRECT",
-    startDate: parseISO(item.startDate).toISOString(),
-    endDate: parseISO(item.endDate).toISOString(),
-  };
 }
 
 async function scanTable(): Promise<Record<string, any>[]> {
@@ -39,27 +28,31 @@ async function scanTable(): Promise<Record<string, any>[]> {
   return items;
 }
 
-async function writeItem(item: Record<string, any>): Promise<void> {
-  const params: PutCommandInput = {
+async function deleteItem(item: Record<string, any>): Promise<void> {
+  const params: DeleteCommandInput = {
     TableName: tableName,
-    Item: item,
+    Key: {
+      energyType: item.energyType,
+      startDate: item.startDate,
+    },
   };
 
-  await docClient.send(new PutCommand(params));
+  await docClient.send(new DeleteCommand(params));
 }
 
 async function main() {
   try {
     const items = await scanTable();
 
-    for (const item of items) {
-      const transformedItem = transformItem(item);
-      await writeItem(transformedItem);
+    const oldItems = items.filter(
+      (item) => !item.startDate.endsWith("00.000Z"),
+    );
+
+    for (const oldItem of oldItems) {
+      await deleteItem(oldItem);
     }
 
-    console.log(
-      "All items have been transformed and written back to the table.",
-    );
+    console.log("All old-style items have been deleted from the table.");
   } catch (error) {
     console.error("An error occurred:", error);
   }
