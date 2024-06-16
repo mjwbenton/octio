@@ -10,7 +10,6 @@ import {
 import { query } from "./graphqlQuery";
 import { EnergyType } from "./energyType";
 
-const CONVERSION_FACTOR = 1_000;
 const CONSUMPTION_SOURCE = "MINI";
 
 export async function fetchMeterMini({
@@ -85,6 +84,6 @@ function graphqlToConsumptionPoint(
     energyType,
     startDate: parseISO(graphqlItem.readAt).toISOString(),
     endDate: addMinutes(parseISO(graphqlItem.readAt), 30).toISOString(),
-    consumption: graphqlItem.consumptionDelta / CONVERSION_FACTOR,
+    consumption: graphqlItem.consumptionDelta,
   };
 }

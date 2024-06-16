@@ -4,6 +4,7 @@ import env from "./env";
 import { ConsumptionPoint } from "./consumptionPoint";
 
 const CONSUMPTION_SOURCE = "DIRECT";
+const CONSUMPTION_FACTOR = 1_000;
 
 const ENERGY_TYPE_CONFIG = {
   ELECTRICITY: {
@@ -40,7 +41,7 @@ async function fetchType(
     energyType: type,
     startDate: parseISO(item.interval_start).toISOString(),
     endDate: parseISO(item.interval_end).toISOString(),
-    consumption: item.consumption,
+    consumption: Math.round(item.consumption * CONSUMPTION_FACTOR),
     source: CONSUMPTION_SOURCE,
   }));
 }
