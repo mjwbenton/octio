@@ -79,8 +79,8 @@ async function fetchConsumptionDates(
       "energyType = :energyType and startDate between :start and :end",
     ExpressionAttributeValues: {
       ":energyType": { S: energyType },
-      ":start": { S: formatISO(startDate) },
-      ":end": { S: formatISO(endDate) },
+      ":start": { S: startDate.toISOString() },
+      ":end": { S: endDate.toISOString() },
     },
   };
 
