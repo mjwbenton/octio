@@ -1,13 +1,12 @@
 import { DynamoDBClient, paginateQuery } from "@aws-sdk/client-dynamodb";
 import env from "./env";
-import { formatISO } from "date-fns/formatISO";
 import { subDays } from "date-fns/subDays";
 import { parseISO } from "date-fns/parseISO";
 import { addMinutes } from "date-fns";
 
 const DYNAMO_CLIENT = new DynamoDBClient({});
 
-const CUSHION_DAYS = 1;
+const CUSHION_DAYS = 5;
 
 enum EnergyType {
   ELECTRICITY = "ELECTRICITY",
