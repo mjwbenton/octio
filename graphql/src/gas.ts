@@ -1,5 +1,13 @@
-import { ConsumptionDataPoint } from "./data/consumptionData";
+import { ConsumptionDataPoint, pointIsUnit } from "./data/consumptionData";
 import { EnergyPoint } from "./generated/graphql";
+import {
+  LITRES,
+  WATT_HOURS,
+  WattHourConsumption,
+  litresToWattHours,
+  withUnit,
+  wattsToKilowattHours,
+} from "./units";
 import { formatNumber } from "./util";
 
 // Source: https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2023
@@ -9,13 +17,15 @@ export function gasPoint({
   usage,
   missingData,
 }: {
-  usage: number;
+  usage: WattHourConsumption;
   missingData: boolean;
 }): EnergyPoint {
   return {
-    usage: formatNumber(usage),
+    usage: formatNumber(wattsToKilowattHours(usage)),
     missingData,
-    emissions: formatNumber((usage * NATURAL_GAS_EMISSIONS_FACTOR) / 1000),
+    emissions: formatNumber(
+      (wattsToKilowattHours(usage) * NATURAL_GAS_EMISSIONS_FACTOR) / 1000,
+    ),
     mix: [
       {
         fuel: "gas",
@@ -26,8 +36,15 @@ export function gasPoint({
 }
 
 export function gasPointFromData(gas?: ConsumptionDataPoint) {
+  if (gas === undefined) {
+    return gasPoint({ usage: withUnit(WATT_HOURS, 0), missingData: true });
+  }
+  // Assumes all gas data not in litres is in watt hours
+  const usage = pointIsUnit(gas, LITRES)
+    ? litresToWattHours(gas.consumption)
+    : withUnit(WATT_HOURS, gas.consumption);
   return gasPoint({
-    usage: gas?.consumption ?? 0,
+    usage,
     missingData: gas === undefined,
   });
 }

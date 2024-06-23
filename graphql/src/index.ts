@@ -13,6 +13,7 @@ import { getGridData } from "./data/gridData";
 import { formatISO } from "date-fns/formatISO";
 import { gasPoint, gasPointFromData } from "./gas";
 import { electricityPoint, electricityPointFromData } from "./electricity";
+import { WATT_HOURS, WattHourConsumption, withUnit } from "./units";
 
 const typeDefs = gql`
   extend schema
@@ -89,7 +90,10 @@ const resolvers: Resolvers = {
         );
       const totals = periods.reduce(
         (acc, period) => {
-          acc.electricity.usage += period.electricity.usage;
+          acc.electricity.usage = withUnit(
+            WATT_HOURS,
+            acc.electricity.usage + period.electricity.usage * 1_000,
+          );
           acc.electricity.emissions += period.electricity.emissions;
           acc.electricity.missingData =
             acc.electricity.missingData || period.electricity.missingData;
@@ -98,17 +102,20 @@ const resolvers: Resolvers = {
               (acc.electricity.fuelUsage[fuel] ?? 0) +
               period.electricity.usage * (percentage / 100);
           });
-          acc.gas.usage += period.gas.usage;
+          acc.gas.usage = withUnit(
+            WATT_HOURS,
+            acc.gas.usage + period.gas.usage * 1_000,
+          );
           acc.gas.missingData = acc.gas.missingData || period.gas.missingData;
           return acc;
         },
         {
           gas: {
-            usage: 0,
+            usage: 0 as WattHourConsumption,
             missingData: false,
           },
           electricity: {
-            usage: 0,
+            usage: 0 as WattHourConsumption,
             emissions: 0,
             missingData: false,
             fuelUsage: {} as { [fuel: string]: number },

@@ -1,19 +1,12 @@
-import { ConsumptionDataPoint } from "./data/consumptionData";
+import { ConsumptionDataPoint, pointIsUnit } from "./data/consumptionData";
 import { GridDataPoint } from "./data/gridData";
+import {
+  WATT_HOURS,
+  WattHourConsumption,
+  wattsToKilowattHours,
+  withUnit,
+} from "./units";
 import { formatNumber } from "./util";
-
-export function electricityPointFromData(
-  electricity?: ConsumptionDataPoint,
-  grid?: GridDataPoint,
-) {
-  return electricityPoint({
-    usage: electricity?.consumption ?? 0,
-    emissions:
-      ((grid?.intensity ?? 0) * (electricity?.consumption ?? 0)) / 1000,
-    missingData: electricity === undefined || grid === undefined,
-    mix: grid?.mix ?? [],
-  });
-}
 
 export function electricityPoint({
   usage,
@@ -21,13 +14,13 @@ export function electricityPoint({
   missingData,
   mix,
 }: {
-  usage: number;
+  usage: WattHourConsumption;
   emissions: number;
   missingData: boolean;
   mix: Array<{ fuel: string; percentage: number }>;
 }) {
   return {
-    usage: formatNumber(usage),
+    usage: formatNumber(wattsToKilowattHours(usage)),
     emissions: formatNumber(emissions),
     missingData,
     mix: mix.map(({ fuel, percentage }) => ({
@@ -35,4 +28,28 @@ export function electricityPoint({
       percentage: formatNumber(percentage, 1),
     })),
   };
+}
+
+export function electricityPointFromData(
+  electricity?: ConsumptionDataPoint,
+  grid?: GridDataPoint,
+) {
+  if (!electricity) {
+    return electricityPoint({
+      usage: withUnit(WATT_HOURS, 0),
+      emissions: 0,
+      missingData: true,
+      mix: [],
+    });
+  }
+  if (!pointIsUnit(electricity, "WATT_HOURS")) {
+    throw new Error("Electricity data is not in watt hours");
+  }
+  return electricityPoint({
+    usage: electricity?.consumption ?? 0,
+    emissions:
+      ((grid?.intensity ?? 0) * (electricity?.consumption ?? 0)) / 1000,
+    missingData: electricity === undefined || grid === undefined,
+    mix: grid?.mix ?? [],
+  });
 }

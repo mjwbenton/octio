@@ -2,6 +2,16 @@
 
 Uses Octopus Energy APIs, combined with APIs from https://carbonintensity.org.uk/ to estimate the emissions related to my home energy usage.
 
+### Units
+
+The consumption table uses different units for different types of energy, in different circumstances.
+
+- Electricity consumption is stored in _Watt hours_
+- Gas consumption, with a source of `DIRECT` is stored in _litres_ (i.e. _0.001 cubic meters_)
+- Gas consumption, with a source of `MINI` is stored in _Watt hours_
+
+Everything vended from the GraphQL API is consistently in kWh.
+
 ### Single-use queries
 
 The following queries can be used to get information needed to fetch data
