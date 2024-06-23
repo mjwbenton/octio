@@ -65,7 +65,7 @@ export default class OctioIngestionStack extends Stack {
       },
     )
       .withUrl()
-      .withSchedule(Schedule.rate(Duration.hours(6)))
+      .withSchedule(Schedule.rate(Duration.hours(24)))
       .withErrorAlarm();
 
     consumptionTable.grantReadData(gapCheckerConsumptionLambda.lambda);
