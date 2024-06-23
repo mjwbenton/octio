@@ -1,4 +1,4 @@
-import { Duration } from "aws-cdk-lib";
+import { CfnOutput, Duration } from "aws-cdk-lib";
 import { Rule, Schedule } from "aws-cdk-lib/aws-events";
 import {
   FunctionUrlAuthType,
@@ -19,7 +19,6 @@ const ALARM_TOPIC = "arn:aws:sns:us-east-1:858777967843:general-alarms";
 
 export default class ScheduledLambda extends Construct {
   readonly lambda: IFunction;
-  readonly url: string;
 
   constructor(
     scope: Construct,
@@ -48,12 +47,17 @@ export default class ScheduledLambda extends Construct {
       memorySize: 2048,
       environment,
     });
+  }
 
+  public withSchedule(schedule: Schedule): this {
     new Rule(this, "ScheduleRule", {
-      schedule: Schedule.rate(Duration.hours(6)),
+      schedule,
       targets: [new targets.LambdaFunction(this.lambda)],
     });
+    return this;
+  }
 
+  public withErrorAlarm(): this {
     const alarmAction = new SnsAction(
       Topic.fromTopicArn(this, "AlarmTopic", ALARM_TOPIC),
     );
@@ -69,9 +73,16 @@ export default class ScheduledLambda extends Construct {
       })
       .addAlarmAction(alarmAction);
 
+    return this;
+  }
+
+  public withUrl(): this {
     const { url } = this.lambda.addFunctionUrl({
       authType: FunctionUrlAuthType.NONE,
     });
-    this.url = url;
+    new CfnOutput(this, "LambdaUrl", {
+      value: url,
+    });
+    return this;
   }
 }

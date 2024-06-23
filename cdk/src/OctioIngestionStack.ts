@@ -1,9 +1,10 @@
-import { CfnOutput, Stack } from "aws-cdk-lib";
+import { CfnOutput, Duration, Stack } from "aws-cdk-lib";
 import { ITable } from "aws-cdk-lib/aws-dynamodb";
 import { Construct } from "constructs";
 import path from "path";
 import env from "./env";
 import ScheduledLambda from "./ScheduledLambda";
+import { Schedule } from "aws-cdk-lib/aws-events";
 
 export default class OctioIngestionStack extends Stack {
   constructor(
@@ -32,26 +33,23 @@ export default class OctioIngestionStack extends Stack {
           OCTOPUS_GAS_DEVICE_ID: env.OCTOPUS_GAS_DEVICE_ID,
         },
       },
-    );
+    )
+      .withUrl()
+      .withSchedule(Schedule.rate(Duration.hours(6)));
 
     consumptionTable.grantReadWriteData(ingestConsumptionLambda.lambda);
-
-    new CfnOutput(this, "IngestConsumptionUrl", {
-      value: ingestConsumptionLambda.url,
-    });
 
     const ingestGridLambda = new ScheduledLambda(this, "IngestGrid", {
       entry: path.join(__dirname, "../../ingest-grid/dist/index.js"),
       environment: {
         GRID_TABLE: gridTable.tableName,
       },
-    });
+    })
+      .withUrl()
+      .withSchedule(Schedule.rate(Duration.hours(6)))
+      .withErrorAlarm();
 
     gridTable.grantReadWriteData(ingestGridLambda.lambda);
-
-    new CfnOutput(this, "IngestGridUrl", {
-      value: ingestGridLambda.url,
-    });
 
     const gapCheckerConsumptionLambda = new ScheduledLambda(
       this,
@@ -65,12 +63,11 @@ export default class OctioIngestionStack extends Stack {
           CONSUMPTION_TABLE: consumptionTable.tableName,
         },
       },
-    );
+    )
+      .withUrl()
+      .withSchedule(Schedule.rate(Duration.hours(6)))
+      .withErrorAlarm();
 
     consumptionTable.grantReadData(gapCheckerConsumptionLambda.lambda);
-
-    new CfnOutput(this, "GapCheckerConsumptionUrl", {
-      value: gapCheckerConsumptionLambda.url,
-    });
   }
 }
