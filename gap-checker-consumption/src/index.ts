@@ -21,8 +21,6 @@ const CONFIGURATION = {
   [EnergyType.GAS]: {
     firstPeriod: parseISO("2024-02-28T00:00:00Z"),
     exceptions: [
-      parseISO("2024-05-30T04:00:00.000Z"),
-      parseISO("2024-05-31T16:00:00.000Z"),
       ...generateDateList(
         parseISO("2024-03-11T22:30:00.000Z"),
         parseISO("2024-03-14T23:30:00.000Z"),
@@ -35,6 +33,9 @@ const CONFIGURATION = {
         parseISO("2024-04-21T16:00:00.000Z"),
         parseISO("2024-04-23T23:30:00.000Z"),
       ),
+      parseISO("2024-05-30T04:00:00.000Z"),
+      parseISO("2024-05-31T16:00:00.000Z"),
+      parseISO("2024-06-22T02:00:00.000Z"),
     ],
   },
 } as const;
