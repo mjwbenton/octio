@@ -35,7 +35,6 @@ const CONFIGURATION = {
       ),
       parseISO("2024-05-30T04:00:00.000Z"),
       parseISO("2024-05-31T16:00:00.000Z"),
-      parseISO("2024-06-22T02:00:00.000Z"),
     ],
   },
 } as const;
