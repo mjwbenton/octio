@@ -1,4 +1,13 @@
-import { ConsumptionDataPoint, pointIsUnit } from "./data/consumptionData";
+import { formatISO } from "date-fns";
+import {
+  ConsumptionDataPoint,
+  assertUnitsOneOf,
+  pointIsUnit,
+} from "./data/consumptionData";
+import {
+  Period,
+  generateAllThirtyMinutePeriodsBetween,
+} from "./generatePeriods";
 import { EnergyPoint } from "./generated/graphql";
 import {
   LITRES,
@@ -39,12 +48,48 @@ export function gasPointFromData(gas?: ConsumptionDataPoint) {
   if (gas === undefined) {
     return gasPoint({ usage: withUnit(WATT_HOURS, 0), missingData: true });
   }
-  // Assumes all gas data not in litres is in watt hours
-  const usage = pointIsUnit(gas, LITRES)
-    ? litresToWattHours(gas.consumption)
-    : withUnit(WATT_HOURS, gas.consumption);
+  if (pointIsUnit(gas, LITRES)) {
+    return gasPoint({
+      usage: litresToWattHours(gas.consumption),
+      missingData: false,
+    });
+  }
+  if (pointIsUnit(gas, WATT_HOURS)) {
+    return gasPoint({
+      usage: gas.consumption,
+      missingData: false,
+    });
+  }
+  throw new Error("Gas data is not in litres or watt hours");
+}
+
+export function gasPointForPeriod(
+  { startDate, endDate }: Period,
+  data: Array<ConsumptionDataPoint>,
+) {
+  const gasLookup = new Map(
+    data.map((point) => [formatISO(point.startDate), point]),
+  );
+  const missingData = generateAllThirtyMinutePeriodsBetween({
+    startDate,
+    endDate,
+  }).some(({ startDate }) => !gasLookup.has(formatISO(startDate)));
+
+  const totals = data.reduce(
+    (acc, point) => {
+      // TODO: Clean-up units here
+      assertUnitsOneOf(point, WATT_HOURS, LITRES);
+      const usage = pointIsUnit(point, LITRES)
+        ? litresToWattHours(point.consumption)
+        : (point.consumption as WattHourConsumption);
+      acc.usage = withUnit(WATT_HOURS, acc.usage + usage);
+      return acc;
+    },
+    { usage: 0 as WattHourConsumption },
+  );
+
   return gasPoint({
-    usage,
-    missingData: gas === undefined,
+    usage: totals.usage,
+    missingData,
   });
 }

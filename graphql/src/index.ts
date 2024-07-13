@@ -7,13 +7,24 @@ import { EnergyPeriod, Energy, Resolvers } from "./generated/graphql";
 import { buildSubgraphSchema } from "@apollo/subgraph";
 import gql from "graphql-tag";
 import { DateTimeResolver } from "graphql-scalars";
-import { EnergyType, getConsumptionData } from "./data/consumptionData";
+import {
+  EnergyType,
+  assertUnitsOneOf,
+  getConsumptionData,
+  pointIsUnit,
+} from "./data/consumptionData";
 import { generateAllThirtyMinutePeriodsBetween } from "./generatePeriods";
 import { getGridData } from "./data/gridData";
 import { formatISO } from "date-fns/formatISO";
-import { gasPoint, gasPointFromData } from "./gas";
+import { gasPoint, gasPointForPeriod, gasPointFromData } from "./gas";
 import { electricityPoint, electricityPointFromData } from "./electricity";
-import { WATT_HOURS, WattHourConsumption, withUnit } from "./units";
+import {
+  LITRES,
+  WATT_HOURS,
+  WattHourConsumption,
+  litresToWattHours,
+  withUnit,
+} from "./units";
 
 const typeDefs = gql`
   extend schema
@@ -88,58 +99,44 @@ const resolvers: Resolvers = {
             };
           },
         );
-      const totals = periods.reduce(
+
+      const electricityTotals = periods.reduce(
         (acc, period) => {
-          acc.electricity.usage = withUnit(
+          acc.usage = withUnit(
             WATT_HOURS,
-            acc.electricity.usage + period.electricity.usage * 1_000,
+            acc.usage + period.electricity.usage * 1_000,
           );
-          acc.electricity.emissions += period.electricity.emissions;
-          acc.electricity.missingData =
-            acc.electricity.missingData || period.electricity.missingData;
+          acc.emissions += period.electricity.emissions;
+          acc.missingData = acc.missingData || period.electricity.missingData;
           period.electricity.mix.forEach(({ fuel, percentage }) => {
-            acc.electricity.fuelUsage[fuel] =
-              (acc.electricity.fuelUsage[fuel] ?? 0) +
+            acc.fuelUsage[fuel] =
+              (acc.fuelUsage[fuel] ?? 0) +
               period.electricity.usage * 1_000 * (percentage / 100);
           });
-          acc.gas.usage = withUnit(
-            WATT_HOURS,
-            acc.gas.usage + period.gas.usage * 1_000,
-          );
-          acc.gas.missingData = acc.gas.missingData || period.gas.missingData;
           return acc;
         },
         {
-          gas: {
-            usage: 0 as WattHourConsumption,
-            missingData: false,
-          },
-          electricity: {
-            usage: 0 as WattHourConsumption,
-            emissions: 0,
-            missingData: false,
-            fuelUsage: {} as { [fuel: string]: number },
-          },
+          usage: 0 as WattHourConsumption,
+          emissions: 0,
+          missingData: false,
+          fuelUsage: {} as { [fuel: string]: number },
         },
       );
       return {
         startDate,
         endDate,
         electricity: electricityPoint({
-          usage: totals.electricity.usage,
-          missingData: totals.electricity.missingData,
-          emissions: totals.electricity.emissions,
-          mix: Object.entries(totals.electricity.fuelUsage).map(
+          usage: electricityTotals.usage,
+          missingData: electricityTotals.missingData,
+          emissions: electricityTotals.emissions,
+          mix: Object.entries(electricityTotals.fuelUsage).map(
             ([fuel, usage]) => ({
               fuel,
-              percentage: (usage / totals.electricity.usage) * 100,
+              percentage: (usage / electricityTotals.usage) * 100,
             }),
           ),
         }),
-        gas: gasPoint({
-          usage: totals.gas.usage,
-          missingData: totals.gas.missingData,
-        }),
+        gas: gasPointForPeriod({ startDate, endDate }, gasData),
         periods,
       } satisfies Energy;
     },

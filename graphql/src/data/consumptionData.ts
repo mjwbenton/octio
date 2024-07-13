@@ -22,6 +22,17 @@ export function pointIsUnit<T extends ConsumptionUnit>(
   return point.unit === unit;
 }
 
+export function assertUnitsOneOf<T extends ConsumptionUnit[]>(
+  point: ConsumptionDataPoint,
+  ...units: [...T]
+): asserts point is ConsumptionDataPoint<T[number]> {
+  if (!units.includes(point.unit)) {
+    throw new Error(
+      `Expected point to have one of the following units: ${units.join(", ")}`,
+    );
+  }
+}
+
 export enum EnergyType {
   ELECTRICITY = "ELECTRICITY",
   GAS = "GAS",
