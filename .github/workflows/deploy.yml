@@ -35,3 +35,16 @@ jobs:
           OCTOPUS_GAS_MPRN: ${{ secrets.OCTOPUS_GAS_MPRN }}
           OCTOPUS_GAS_SERIAL: ${{ secrets.OCTOPUS_GAS_SERIAL }}
           OCTOPUS_GAS_DEVICE_ID: ${{ secrets.OCTOPUS_GAS_DEVICE_ID }}
+  test:
+    needs: deploy
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "yarn"
+
+      - run: yarn install --frozen-lockfile
+      - run: yarn test

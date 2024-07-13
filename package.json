@@ -15,6 +15,7 @@
     "deploy": "yarn workspace @mattb.tech/octio-cdk run deploy",
     "build": "yarn workspaces run build",
     "format": "yarn workspaces run format",
-    "format:check": "yarn workspaces run format:check"
+    "format:check": "yarn workspaces run format:check",
+    "test": "yarn workspace @mattb.tech/octio-snapshot-tests run test"
   }
 }
