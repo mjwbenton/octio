@@ -10,7 +10,7 @@ The consumption table uses different units for different types of energy, in dif
 - Gas consumption, with a source of `DIRECT` is stored in _litres_ (i.e. _0.001 cubic meters_)
 - Gas consumption, with a source of `MINI` is stored in _Watt hours_
 
-Everything vended from the GraphQL API is consistently in kWh.
+Energy vended from the GraphQL API is consistently in kWh. Emissions vended from the GraphQL API is consistently kgCo2e.
 
 ### Single-use queries
 
