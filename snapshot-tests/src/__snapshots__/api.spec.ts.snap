@@ -101,6 +101,7 @@ exports[`Snapshot 1`] = `
               "percentage": 17.6,
             },
           ],
+          "usage": 0.054,
         },
         "gas": {
           "emissions": 0,
@@ -111,6 +112,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -155,6 +157,7 @@ exports[`Snapshot 1`] = `
               "percentage": 15.6,
             },
           ],
+          "usage": 0.03,
         },
         "gas": {
           "emissions": 0,
@@ -165,6 +168,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -209,6 +213,7 @@ exports[`Snapshot 1`] = `
               "percentage": 14.4,
             },
           ],
+          "usage": 0.046,
         },
         "gas": {
           "emissions": 0,
@@ -219,6 +224,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -263,6 +269,7 @@ exports[`Snapshot 1`] = `
               "percentage": 13.4,
             },
           ],
+          "usage": 0.06,
         },
         "gas": {
           "emissions": 0,
@@ -273,6 +280,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -317,6 +325,7 @@ exports[`Snapshot 1`] = `
               "percentage": 13.2,
             },
           ],
+          "usage": 0.037,
         },
         "gas": {
           "emissions": 0,
@@ -327,6 +336,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -371,6 +381,7 @@ exports[`Snapshot 1`] = `
               "percentage": 13.3,
             },
           ],
+          "usage": 0.034,
         },
         "gas": {
           "emissions": 0,
@@ -381,6 +392,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -425,6 +437,7 @@ exports[`Snapshot 1`] = `
               "percentage": 12.1,
             },
           ],
+          "usage": 0.061,
         },
         "gas": {
           "emissions": 0,
@@ -435,6 +448,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -479,6 +493,7 @@ exports[`Snapshot 1`] = `
               "percentage": 10.6,
             },
           ],
+          "usage": 0.052,
         },
         "gas": {
           "emissions": 0,
@@ -489,6 +504,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -533,6 +549,7 @@ exports[`Snapshot 1`] = `
               "percentage": 9.1,
             },
           ],
+          "usage": 0.031,
         },
         "gas": {
           "emissions": 0,
@@ -543,6 +560,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -587,6 +605,7 @@ exports[`Snapshot 1`] = `
               "percentage": 9.6,
             },
           ],
+          "usage": 0.048,
         },
         "gas": {
           "emissions": 0,
@@ -597,6 +616,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -641,6 +661,7 @@ exports[`Snapshot 1`] = `
               "percentage": 9,
             },
           ],
+          "usage": 0.057,
         },
         "gas": {
           "emissions": 0,
@@ -651,6 +672,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -695,6 +717,7 @@ exports[`Snapshot 1`] = `
               "percentage": 8.8,
             },
           ],
+          "usage": 0.026,
         },
         "gas": {
           "emissions": 0,
@@ -705,6 +728,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -749,6 +773,7 @@ exports[`Snapshot 1`] = `
               "percentage": 7.2,
             },
           ],
+          "usage": 0.037,
         },
         "gas": {
           "emissions": 0,
@@ -759,6 +784,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -803,6 +829,7 @@ exports[`Snapshot 1`] = `
               "percentage": 5.3,
             },
           ],
+          "usage": 0.059,
         },
         "gas": {
           "emissions": 0,
@@ -813,6 +840,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -857,6 +885,7 @@ exports[`Snapshot 1`] = `
               "percentage": 4.8,
             },
           ],
+          "usage": 0.04,
         },
         "gas": {
           "emissions": 0,
@@ -867,6 +896,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -911,6 +941,7 @@ exports[`Snapshot 1`] = `
               "percentage": 5.4,
             },
           ],
+          "usage": 0.063,
         },
         "gas": {
           "emissions": 0.999,
@@ -921,6 +952,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 4.922,
         },
       },
       {
@@ -965,6 +997,7 @@ exports[`Snapshot 1`] = `
               "percentage": 5.8,
             },
           ],
+          "usage": 0.179,
         },
         "gas": {
           "emissions": 0,
@@ -975,6 +1008,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -1019,6 +1053,7 @@ exports[`Snapshot 1`] = `
               "percentage": 6.4,
             },
           ],
+          "usage": 0.056,
         },
         "gas": {
           "emissions": 0,
@@ -1029,6 +1064,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -1073,6 +1109,7 @@ exports[`Snapshot 1`] = `
               "percentage": 5.9,
             },
           ],
+          "usage": 0.03,
         },
         "gas": {
           "emissions": 0,
@@ -1083,6 +1120,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -1127,6 +1165,7 @@ exports[`Snapshot 1`] = `
               "percentage": 5.1,
             },
           ],
+          "usage": 0.148,
         },
         "gas": {
           "emissions": 0,
@@ -1137,6 +1176,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -1181,6 +1221,7 @@ exports[`Snapshot 1`] = `
               "percentage": 5,
             },
           ],
+          "usage": 0.067,
         },
         "gas": {
           "emissions": 0,
@@ -1191,6 +1232,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -1235,6 +1277,7 @@ exports[`Snapshot 1`] = `
               "percentage": 4.6,
             },
           ],
+          "usage": 0.659,
         },
         "gas": {
           "emissions": 0.005,
@@ -1245,6 +1288,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0.022,
         },
       },
       {
@@ -1289,6 +1333,7 @@ exports[`Snapshot 1`] = `
               "percentage": 4.5,
             },
           ],
+          "usage": 0.416,
         },
         "gas": {
           "emissions": 0.063,
@@ -1299,6 +1344,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0.312,
         },
       },
       {
@@ -1343,6 +1389,7 @@ exports[`Snapshot 1`] = `
               "percentage": 4.6,
             },
           ],
+          "usage": 0.075,
         },
         "gas": {
           "emissions": 0.05,
@@ -1353,6 +1400,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0.245,
         },
       },
       {
@@ -1397,6 +1445,7 @@ exports[`Snapshot 1`] = `
               "percentage": 5.1,
             },
           ],
+          "usage": 0.036,
         },
         "gas": {
           "emissions": 0,
@@ -1407,6 +1456,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -1451,6 +1501,7 @@ exports[`Snapshot 1`] = `
               "percentage": 5.8,
             },
           ],
+          "usage": 0.047,
         },
         "gas": {
           "emissions": 0,
@@ -1461,6 +1512,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -1505,6 +1557,7 @@ exports[`Snapshot 1`] = `
               "percentage": 5.5,
             },
           ],
+          "usage": 0.086,
         },
         "gas": {
           "emissions": 0,
@@ -1515,6 +1568,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -1559,6 +1613,7 @@ exports[`Snapshot 1`] = `
               "percentage": 5.7,
             },
           ],
+          "usage": 0.063,
         },
         "gas": {
           "emissions": 0,
@@ -1569,6 +1624,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -1613,6 +1669,7 @@ exports[`Snapshot 1`] = `
               "percentage": 5.8,
             },
           ],
+          "usage": 0.045,
         },
         "gas": {
           "emissions": 0,
@@ -1623,6 +1680,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -1667,6 +1725,7 @@ exports[`Snapshot 1`] = `
               "percentage": 5.9,
             },
           ],
+          "usage": 0.088,
         },
         "gas": {
           "emissions": 0,
@@ -1677,6 +1736,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -1721,6 +1781,7 @@ exports[`Snapshot 1`] = `
               "percentage": 6.4,
             },
           ],
+          "usage": 0.092,
         },
         "gas": {
           "emissions": 0.005,
@@ -1731,6 +1792,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0.022,
         },
       },
       {
@@ -1775,6 +1837,7 @@ exports[`Snapshot 1`] = `
               "percentage": 7.4,
             },
           ],
+          "usage": 0.065,
         },
         "gas": {
           "emissions": 0,
@@ -1785,6 +1848,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -1829,6 +1893,7 @@ exports[`Snapshot 1`] = `
               "percentage": 8,
             },
           ],
+          "usage": 0.075,
         },
         "gas": {
           "emissions": 0,
@@ -1839,6 +1904,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -1883,6 +1949,7 @@ exports[`Snapshot 1`] = `
               "percentage": 8.3,
             },
           ],
+          "usage": 0.709,
         },
         "gas": {
           "emissions": 0.014,
@@ -1893,6 +1960,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0.067,
         },
       },
       {
@@ -1937,6 +2005,7 @@ exports[`Snapshot 1`] = `
               "percentage": 9.3,
             },
           ],
+          "usage": 1.029,
         },
         "gas": {
           "emissions": 0,
@@ -1947,6 +2016,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -1991,6 +2061,7 @@ exports[`Snapshot 1`] = `
               "percentage": 10.3,
             },
           ],
+          "usage": 0.307,
         },
         "gas": {
           "emissions": 0,
@@ -2001,6 +2072,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -2045,6 +2117,7 @@ exports[`Snapshot 1`] = `
               "percentage": 10.4,
             },
           ],
+          "usage": 0.053,
         },
         "gas": {
           "emissions": 0,
@@ -2055,6 +2128,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -2099,6 +2173,7 @@ exports[`Snapshot 1`] = `
               "percentage": 14,
             },
           ],
+          "usage": 0.084,
         },
         "gas": {
           "emissions": 0,
@@ -2109,6 +2184,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -2153,6 +2229,7 @@ exports[`Snapshot 1`] = `
               "percentage": 13.7,
             },
           ],
+          "usage": 0.068,
         },
         "gas": {
           "emissions": 0,
@@ -2163,6 +2240,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -2207,6 +2285,7 @@ exports[`Snapshot 1`] = `
               "percentage": 11.5,
             },
           ],
+          "usage": 0.414,
         },
         "gas": {
           "emissions": 0.09,
@@ -2217,6 +2296,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0.445,
         },
       },
       {
@@ -2261,6 +2341,7 @@ exports[`Snapshot 1`] = `
               "percentage": 7.9,
             },
           ],
+          "usage": 0.112,
         },
         "gas": {
           "emissions": 0,
@@ -2271,6 +2352,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -2315,6 +2397,7 @@ exports[`Snapshot 1`] = `
               "percentage": 7.7,
             },
           ],
+          "usage": 0.15,
         },
         "gas": {
           "emissions": 0.454,
@@ -2325,6 +2408,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 2.238,
         },
       },
       {
@@ -2369,6 +2453,7 @@ exports[`Snapshot 1`] = `
               "percentage": 6.1,
             },
           ],
+          "usage": 0.121,
         },
         "gas": {
           "emissions": 0,
@@ -2379,6 +2464,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -2423,6 +2509,7 @@ exports[`Snapshot 1`] = `
               "percentage": 8,
             },
           ],
+          "usage": 0.358,
         },
         "gas": {
           "emissions": 0,
@@ -2433,6 +2520,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -2477,6 +2565,7 @@ exports[`Snapshot 1`] = `
               "percentage": 8.2,
             },
           ],
+          "usage": 0.347,
         },
         "gas": {
           "emissions": 0,
@@ -2487,6 +2576,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -2531,6 +2621,7 @@ exports[`Snapshot 1`] = `
               "percentage": 7.9,
             },
           ],
+          "usage": 0.028,
         },
         "gas": {
           "emissions": 0,
@@ -2541,6 +2632,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -2585,6 +2677,7 @@ exports[`Snapshot 1`] = `
               "percentage": 8.1,
             },
           ],
+          "usage": 0.055,
         },
         "gas": {
           "emissions": 0,
@@ -2595,6 +2688,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
       {
@@ -2639,6 +2733,7 @@ exports[`Snapshot 1`] = `
               "percentage": 6.6,
             },
           ],
+          "usage": 0.054,
         },
         "gas": {
           "emissions": 0,
@@ -2649,6 +2744,7 @@ exports[`Snapshot 1`] = `
               "percentage": 100,
             },
           ],
+          "usage": 0,
         },
       },
     ],

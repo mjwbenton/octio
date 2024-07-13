@@ -26,6 +26,7 @@ const QUERY = gql`
       }
       periods {
         electricity {
+          usage
           emissions
           missingData
           mix {
@@ -34,6 +35,7 @@ const QUERY = gql`
           }
         }
         gas {
+          usage
           emissions
           missingData
           mix {
