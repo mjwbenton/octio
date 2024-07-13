@@ -45,10 +45,10 @@ export function electricityPointFromData(
   if (!pointIsUnit(electricity, "WATT_HOURS")) {
     throw new Error("Electricity data is not in watt hours");
   }
+  const consumptionKwH = wattsToKilowattHours(electricity.consumption);
   return electricityPoint({
     usage: electricity?.consumption ?? 0,
-    emissions:
-      ((grid?.intensity ?? 0) * (electricity?.consumption ?? 0)) / 1000,
+    emissions: ((grid?.intensity ?? 0) * consumptionKwH) / 1000,
     missingData: electricity === undefined || grid === undefined,
     mix: grid?.mix ?? [],
   });

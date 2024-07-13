@@ -100,7 +100,7 @@ const resolvers: Resolvers = {
           period.electricity.mix.forEach(({ fuel, percentage }) => {
             acc.electricity.fuelUsage[fuel] =
               (acc.electricity.fuelUsage[fuel] ?? 0) +
-              period.electricity.usage * (percentage / 100);
+              period.electricity.usage * 1_000 * (percentage / 100);
           });
           acc.gas.usage = withUnit(
             WATT_HOURS,
