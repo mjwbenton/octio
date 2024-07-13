@@ -63,7 +63,7 @@ type GraphQlResponse<ResponseType = any> = {
 
 export async function query<ResponseType = any>(
   query: DocumentNode,
-  variables: Record<string, string>
+  variables: Record<string, string>,
 ): Promise<ResponseType> {
   const response = await fetch(ENDPOINT, {
     method: "POST",
