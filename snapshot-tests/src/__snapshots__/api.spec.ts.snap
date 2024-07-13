@@ -4,12 +4,12 @@ exports[`Snapshot 1`] = `
 {
   "energy": {
     "electricity": {
-      "emissions": 1070.097,
+      "emissions": 1.071,
       "missingData": false,
       "mix": [
         {
           "fuel": "biomass",
-          "percentage": 0,
+          "percentage": 1,
         },
         {
           "fuel": "coal",
@@ -17,15 +17,15 @@ exports[`Snapshot 1`] = `
         },
         {
           "fuel": "imports",
-          "percentage": 0,
+          "percentage": 13,
         },
         {
           "fuel": "gas",
-          "percentage": 0,
+          "percentage": 37.2,
         },
         {
           "fuel": "nuclear",
-          "percentage": 0,
+          "percentage": 0.5,
         },
         {
           "fuel": "other",
@@ -33,15 +33,15 @@ exports[`Snapshot 1`] = `
         },
         {
           "fuel": "hydro",
-          "percentage": 0,
+          "percentage": 0.1,
         },
         {
           "fuel": "solar",
-          "percentage": 0,
+          "percentage": 40.2,
         },
         {
           "fuel": "wind",
-          "percentage": 0,
+          "percentage": 8,
         },
       ],
       "usage": 6.851,
@@ -61,7 +61,7 @@ exports[`Snapshot 1`] = `
     "periods": [
       {
         "electricity": {
-          "emissions": 15.39,
+          "emissions": 0.015,
           "missingData": false,
           "mix": [
             {
@@ -117,7 +117,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 9.51,
+          "emissions": 0.01,
           "missingData": false,
           "mix": [
             {
@@ -173,7 +173,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 14.904,
+          "emissions": 0.015,
           "missingData": false,
           "mix": [
             {
@@ -229,7 +229,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 19.02,
+          "emissions": 0.019,
           "missingData": false,
           "mix": [
             {
@@ -285,7 +285,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 11.655,
+          "emissions": 0.012,
           "missingData": false,
           "mix": [
             {
@@ -341,7 +341,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 10.234,
+          "emissions": 0.01,
           "missingData": false,
           "mix": [
             {
@@ -397,7 +397,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 18.483,
+          "emissions": 0.018,
           "missingData": false,
           "mix": [
             {
@@ -453,7 +453,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 16.12,
+          "emissions": 0.016,
           "missingData": false,
           "mix": [
             {
@@ -509,7 +509,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 9.858,
+          "emissions": 0.01,
           "missingData": false,
           "mix": [
             {
@@ -565,7 +565,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 13.152,
+          "emissions": 0.013,
           "missingData": false,
           "mix": [
             {
@@ -621,7 +621,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 13.509,
+          "emissions": 0.014,
           "missingData": false,
           "mix": [
             {
@@ -677,7 +677,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 5.096,
+          "emissions": 0.005,
           "missingData": false,
           "mix": [
             {
@@ -733,7 +733,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 6.586,
+          "emissions": 0.007,
           "missingData": false,
           "mix": [
             {
@@ -789,7 +789,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 9.322,
+          "emissions": 0.009,
           "missingData": false,
           "mix": [
             {
@@ -845,7 +845,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 5.96,
+          "emissions": 0.006,
           "missingData": false,
           "mix": [
             {
@@ -901,7 +901,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 7.182,
+          "emissions": 0.007,
           "missingData": false,
           "mix": [
             {
@@ -957,7 +957,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 18.079,
+          "emissions": 0.018,
           "missingData": false,
           "mix": [
             {
@@ -1013,7 +1013,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 4.424,
+          "emissions": 0.004,
           "missingData": false,
           "mix": [
             {
@@ -1069,7 +1069,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 1.71,
+          "emissions": 0.002,
           "missingData": false,
           "mix": [
             {
@@ -1125,7 +1125,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 8.732,
+          "emissions": 0.009,
           "missingData": false,
           "mix": [
             {
@@ -1181,7 +1181,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 3.752,
+          "emissions": 0.004,
           "missingData": false,
           "mix": [
             {
@@ -1237,7 +1237,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 41.517,
+          "emissions": 0.042,
           "missingData": false,
           "mix": [
             {
@@ -1293,7 +1293,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 22.048,
+          "emissions": 0.022,
           "missingData": false,
           "mix": [
             {
@@ -1349,7 +1349,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 3.45,
+          "emissions": 0.003,
           "missingData": false,
           "mix": [
             {
@@ -1405,7 +1405,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 1.728,
+          "emissions": 0.002,
           "missingData": false,
           "mix": [
             {
@@ -1461,7 +1461,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 2.35,
+          "emissions": 0.002,
           "missingData": false,
           "mix": [
             {
@@ -1517,7 +1517,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 4.042,
+          "emissions": 0.004,
           "missingData": false,
           "mix": [
             {
@@ -1573,7 +1573,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 2.835,
+          "emissions": 0.003,
           "missingData": false,
           "mix": [
             {
@@ -1629,7 +1629,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 1.89,
+          "emissions": 0.002,
           "missingData": false,
           "mix": [
             {
@@ -1685,7 +1685,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 3.96,
+          "emissions": 0.004,
           "missingData": false,
           "mix": [
             {
@@ -1741,7 +1741,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 5.336,
+          "emissions": 0.005,
           "missingData": false,
           "mix": [
             {
@@ -1797,7 +1797,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 4.42,
+          "emissions": 0.004,
           "missingData": false,
           "mix": [
             {
@@ -1853,7 +1853,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 6,
+          "emissions": 0.006,
           "missingData": false,
           "mix": [
             {
@@ -1909,7 +1909,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 70.9,
+          "emissions": 0.071,
           "missingData": false,
           "mix": [
             {
@@ -1965,7 +1965,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 104.958,
+          "emissions": 0.105,
           "missingData": false,
           "mix": [
             {
@@ -2021,7 +2021,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 39.296,
+          "emissions": 0.039,
           "missingData": false,
           "mix": [
             {
@@ -2077,7 +2077,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 7.473,
+          "emissions": 0.007,
           "missingData": false,
           "mix": [
             {
@@ -2133,7 +2133,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 14.364,
+          "emissions": 0.014,
           "missingData": false,
           "mix": [
             {
@@ -2189,7 +2189,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 14.756,
+          "emissions": 0.015,
           "missingData": false,
           "mix": [
             {
@@ -2245,7 +2245,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 105.57,
+          "emissions": 0.106,
           "missingData": false,
           "mix": [
             {
@@ -2301,7 +2301,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 34.944,
+          "emissions": 0.035,
           "missingData": false,
           "mix": [
             {
@@ -2357,7 +2357,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 47.85,
+          "emissions": 0.048,
           "missingData": false,
           "mix": [
             {
@@ -2413,7 +2413,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 41.14,
+          "emissions": 0.041,
           "missingData": false,
           "mix": [
             {
@@ -2469,7 +2469,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 114.56,
+          "emissions": 0.115,
           "missingData": false,
           "mix": [
             {
@@ -2525,7 +2525,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 108.611,
+          "emissions": 0.109,
           "missingData": false,
           "mix": [
             {
@@ -2581,7 +2581,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 8.876,
+          "emissions": 0.009,
           "missingData": false,
           "mix": [
             {
@@ -2637,7 +2637,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 16.995,
+          "emissions": 0.017,
           "missingData": false,
           "mix": [
             {
@@ -2693,7 +2693,7 @@ exports[`Snapshot 1`] = `
       },
       {
         "electricity": {
-          "emissions": 17.55,
+          "emissions": 0.018,
           "missingData": false,
           "mix": [
             {
