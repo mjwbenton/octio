@@ -16,6 +16,6 @@
     "build": "yarn workspaces run build",
     "format": "yarn workspaces run format",
     "format:check": "yarn workspaces run format:check",
-    "test": "yarn workspace @mattb.tech/octio-snapshot-tests run test"
+    "test": "yarn workspaces run test"
   }
 }
