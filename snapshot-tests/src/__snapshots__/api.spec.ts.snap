@@ -1,0 +1,2658 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot 1`] = `
+{
+  "energy": {
+    "electricity": {
+      "emissions": 1070.097,
+      "missingData": false,
+      "mix": [
+        {
+          "fuel": "biomass",
+          "percentage": 0,
+        },
+        {
+          "fuel": "coal",
+          "percentage": 0,
+        },
+        {
+          "fuel": "imports",
+          "percentage": 0,
+        },
+        {
+          "fuel": "gas",
+          "percentage": 0,
+        },
+        {
+          "fuel": "nuclear",
+          "percentage": 0,
+        },
+        {
+          "fuel": "other",
+          "percentage": 0,
+        },
+        {
+          "fuel": "hydro",
+          "percentage": 0,
+        },
+        {
+          "fuel": "solar",
+          "percentage": 0,
+        },
+        {
+          "fuel": "wind",
+          "percentage": 0,
+        },
+      ],
+      "usage": 6.851,
+    },
+    "endDate": "2024-06-16T23:59:59.000Z",
+    "gas": {
+      "emissions": 1.679,
+      "missingData": false,
+      "mix": [
+        {
+          "fuel": "gas",
+          "percentage": 100,
+        },
+      ],
+      "usage": 8.273,
+    },
+    "periods": [
+      {
+        "electricity": {
+          "emissions": 15.39,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 11.3,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 70.5,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.2,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 0.5,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 17.6,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 9.51,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 4.6,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 79.5,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 0,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 15.6,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 14.904,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 3.7,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 81.5,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.2,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 0,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 14.4,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 19.02,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 7.3,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 79.1,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.2,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 0,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 13.4,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 11.655,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 8.1,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 78.5,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 0,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 13.2,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 10.234,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 12,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 74.4,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.2,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 0,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 13.3,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 18.483,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 12.6,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 74.8,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.4,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 0,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 12.1,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 16.12,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 11.8,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 76.9,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.4,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 0,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 10.6,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 9.858,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 10,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 79.2,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.3,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 1.1,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 9.1,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 13.152,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.2,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 14.8,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 67.2,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.5,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 7.5,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 9.6,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 13.509,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.3,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 13.9,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 57.9,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.6,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 18.4,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 9,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 5.096,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.3,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 11.9,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 47.5,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.4,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 31,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 8.8,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 6.586,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.2,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 9.3,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 43.3,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.2,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 39.8,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 7.2,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 9.322,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 5.3,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 39.3,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 49.9,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 5.3,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 5.96,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 3.7,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 37.1,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 54.2,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 4.8,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 7.182,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 8.1,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 27.5,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 58.9,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 5.4,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0.999,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 18.079,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 9.7,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 23.9,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 60.4,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 5.8,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 4.424,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 12.3,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 17.8,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 63.3,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 6.4,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 1.71,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 11.4,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 12.4,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 70.1,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 5.9,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 8.732,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 8.4,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 13.4,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 73.1,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 5.1,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 3.752,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 8.1,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 12.7,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 74.1,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 5,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 41.517,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 7.5,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 14.7,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 73.2,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 4.6,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0.005,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 22.048,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 6.6,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 12.2,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 76.6,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 4.5,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0.063,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 3.45,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 5.3,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 10.8,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 79.3,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 4.6,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0.05,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 1.728,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 6,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 11.2,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 77.5,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 5.1,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 2.35,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.2,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 6.6,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 11.6,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 75.7,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 5.8,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 4.042,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 5.9,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 11,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 77.3,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 5.5,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 2.835,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.2,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 5.7,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 10.5,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 77.8,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 5.7,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 1.89,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.4,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 5.5,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 9.8,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 78.4,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 5.8,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 3.96,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.3,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 6.4,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 10.4,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 76.8,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 5.9,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 5.336,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.3,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 8.7,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 13.4,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 71,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 6.4,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0.005,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 4.42,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.4,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 11.9,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 15.6,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 64.5,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 7.4,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 6,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.4,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 15.3,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 17.9,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.2,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 58.1,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 8,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 70.9,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.4,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 16.5,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 22.9,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.3,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 51.5,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 8.3,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0.014,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 104.958,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.9,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 20,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 22.8,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.5,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.2,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 46.4,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 9.3,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 39.296,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 1.9,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 23.6,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 28.6,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 1.2,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.2,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 34.3,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 10.3,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 7.473,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 2.3,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 25.3,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 31.5,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 1.9,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.6,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 28.1,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 10.4,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 14.364,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 4.7,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 17.5,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 39.7,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 2.3,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 20.8,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 14,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 14.756,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 4.7,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 16.1,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 51,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 2,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.8,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 11.7,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 13.7,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 105.57,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 4.3,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 17.9,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 60.2,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 1.5,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.5,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 4.2,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 11.5,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0.09,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 34.944,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 3.1,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 10.7,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 76.5,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 1.1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.3,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 0.5,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 7.9,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 47.85,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 2.6,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 9.7,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 78.4,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.9,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.2,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 0.5,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 7.7,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0.454,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 41.14,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 1.5,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 6.3,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 84.5,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.8,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 0.5,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 6.1,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 114.56,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 1.3,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 11.6,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 78.1,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.9,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0.1,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 0,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 8,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 108.611,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 1.1,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 12.4,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 76.3,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 1,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 1,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 8.2,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 8.876,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 0.8,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 12.9,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 77.5,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.9,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 0,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 7.9,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 16.995,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 1,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 14,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 75.1,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.9,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 0.9,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 8.1,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+      {
+        "electricity": {
+          "emissions": 17.55,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "biomass",
+              "percentage": 1.1,
+            },
+            {
+              "fuel": "coal",
+              "percentage": 0,
+            },
+            {
+              "fuel": "imports",
+              "percentage": 11.7,
+            },
+            {
+              "fuel": "gas",
+              "percentage": 79.8,
+            },
+            {
+              "fuel": "nuclear",
+              "percentage": 0.7,
+            },
+            {
+              "fuel": "other",
+              "percentage": 0,
+            },
+            {
+              "fuel": "hydro",
+              "percentage": 0,
+            },
+            {
+              "fuel": "solar",
+              "percentage": 0,
+            },
+            {
+              "fuel": "wind",
+              "percentage": 6.6,
+            },
+          ],
+        },
+        "gas": {
+          "emissions": 0,
+          "missingData": false,
+          "mix": [
+            {
+              "fuel": "gas",
+              "percentage": 100,
+            },
+          ],
+        },
+      },
+    ],
+    "startDate": "2024-06-16T00:00:00.000Z",
+  },
+}
+`;
