@@ -28,7 +28,7 @@ function gasPoint({
   missingData: boolean;
 }): EnergyPoint {
   return {
-    usage: formatNumber(wattsToKilowattHours(usage)),
+    usage: formatNumber(usage),
     missingData,
     emissions: formatNumber(emissions),
     mix: [
