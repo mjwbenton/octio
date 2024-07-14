@@ -4,7 +4,7 @@ exports[`Snapshot 1`] = `
 {
   "energy": {
     "electricity": {
-      "emissions": 1.071,
+      "emissions": 1.07,
       "missingData": false,
       "mix": [
         {
