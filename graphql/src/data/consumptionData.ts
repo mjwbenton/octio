@@ -16,13 +16,6 @@ export interface ConsumptionDataPoint<
   unit: T;
 }
 
-export function pointIsUnit<T extends ConsumptionUnit>(
-  point: ConsumptionDataPoint,
-  unit: T,
-): point is ConsumptionDataPoint<T> {
-  return point.unit === unit;
-}
-
 export async function getConsumptionData<T extends EnergyType>(
   energyType: T,
   startDate: Date,

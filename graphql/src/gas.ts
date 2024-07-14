@@ -1,5 +1,5 @@
 import { formatISO } from "date-fns";
-import { ConsumptionDataPoint, pointIsUnit } from "./data/consumptionData";
+import { ConsumptionDataPoint } from "./data/consumptionData";
 import {
   Period,
   generateAllThirtyMinutePeriodsBetween,
@@ -45,9 +45,8 @@ export function gasPointFromData(
   if (gas === undefined) {
     return gasPoint({ usage: 0, emissions: 0, missingData: true });
   }
-  const usage = pointIsUnit(gas, LITRES)
-    ? litresToWattHours(gas.consumption)
-    : gas.consumption;
+  const usage =
+    gas.unit === LITRES ? litresToWattHours(gas.consumption) : gas.consumption;
   return gasPoint({
     usage: wattsToKilowattHours(usage),
     emissions: wattsToKilowattHours(usage) * NATURAL_GAS_EMISSIONS_FACTOR,
@@ -68,9 +67,10 @@ export function gasPointForPeriod(
   }).some(({ startDate }) => !gasLookup.has(formatISO(startDate)));
 
   const totalUsage = data.reduce((acc, point) => {
-    const usage = pointIsUnit(point, LITRES)
-      ? litresToWattHours(point.consumption)
-      : point.consumption;
+    const usage =
+      point.unit === LITRES
+        ? litresToWattHours(point.consumption)
+        : point.consumption;
     return acc + usage;
   }, 0);
 
