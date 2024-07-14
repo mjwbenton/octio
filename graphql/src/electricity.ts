@@ -1,5 +1,14 @@
-import { ConsumptionDataPoint, pointIsUnit } from "./data/consumptionData";
+import { formatISO } from "date-fns";
+import {
+  ConsumptionDataPoint,
+  assertUnitsOneOf,
+  pointIsUnit,
+} from "./data/consumptionData";
 import { GridDataPoint } from "./data/gridData";
+import {
+  Period,
+  generateAllThirtyMinutePeriodsBetween,
+} from "./generatePeriods";
 import {
   WATT_HOURS,
   WattHourConsumption,
@@ -51,5 +60,57 @@ export function electricityPointFromData(
     emissions: ((grid?.intensity ?? 0) * consumptionKwH) / 1000,
     missingData: electricity === undefined || grid === undefined,
     mix: grid?.mix ?? [],
+  });
+}
+
+export function electricityPointForPeriod(
+  { startDate, endDate }: Period,
+  consumptionData: Array<ConsumptionDataPoint>,
+  gridData: Array<GridDataPoint>,
+) {
+  const electricityLookup = new Map(
+    consumptionData.map((point) => [formatISO(point.startDate), point]),
+  );
+  const gridLookup = new Map(
+    gridData.map((point) => [formatISO(point.startDate), point]),
+  );
+  const periods = generateAllThirtyMinutePeriodsBetween({ startDate, endDate });
+  const missingConsumptionData = periods.some(
+    ({ startDate }) => !electricityLookup.has(formatISO(startDate)),
+  );
+  const missingGridData = periods.some(
+    ({ startDate }) => !gridLookup.has(formatISO(startDate)),
+  );
+
+  const totals = consumptionData.reduce(
+    (acc, point) => {
+      // TODO: Clean-up units here
+      assertUnitsOneOf(point, WATT_HOURS);
+      const usage = point.consumption;
+      const consumptionKwH = wattsToKilowattHours(usage);
+      const grid = gridLookup.get(formatISO(point.startDate));
+      acc.usage = withUnit(WATT_HOURS, acc.usage + usage);
+      acc.emissions += (grid?.intensity ?? 0) * consumptionKwH;
+      grid?.mix.forEach(({ fuel, percentage }) => {
+        acc.fuelUsage[fuel] =
+          (acc.fuelUsage[fuel] ?? 0) + usage * (percentage / 100);
+      });
+      return acc;
+    },
+    {
+      usage: 0 as WattHourConsumption,
+      emissions: 0,
+      fuelUsage: {} as { [fuel: string]: number },
+    },
+  );
+
+  return electricityPoint({
+    usage: totals.usage,
+    emissions: totals.emissions / 1000,
+    missingData: missingConsumptionData || missingGridData,
+    mix: Object.entries(totals.fuelUsage).map(([fuel, usage]) => ({
+      fuel,
+      percentage: (usage / totals.usage) * 100,
+    })),
   });
 }
