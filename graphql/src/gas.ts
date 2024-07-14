@@ -40,7 +40,7 @@ function gasPoint({
 }
 
 export function gasPointFromData(
-  gas?: ConsumptionDataPoint<WattHours | Litres>
+  gas?: ConsumptionDataPoint<WattHours | Litres>,
 ) {
   if (gas === undefined) {
     return gasPoint({ usage: 0, emissions: 0, missingData: true });
@@ -57,10 +57,10 @@ export function gasPointFromData(
 
 export function gasPointForPeriod(
   { startDate, endDate }: Period,
-  data: Array<ConsumptionDataPoint>
+  data: Array<ConsumptionDataPoint>,
 ) {
   const gasLookup = new Map(
-    data.map((point) => [formatISO(point.startDate), point])
+    data.map((point) => [formatISO(point.startDate), point]),
   );
   const missingData = generateAllThirtyMinutePeriodsBetween({
     startDate,
