@@ -1,7 +1,8 @@
 import { DynamoDBClient, paginateQuery } from "@aws-sdk/client-dynamodb";
 import env from "../env";
 import { parseISO } from "date-fns/parseISO";
-import { Consumption, ConsumptionUnit, LITRES, WATT_HOURS } from "../units";
+import { ConsumptionUnit, LITRES, WATT_HOURS } from "../units";
+import { EnergyType, UnitsForEnergyType } from "./energyType";
 
 const DYNAMO_CLIENT = new DynamoDBClient({});
 
@@ -11,7 +12,7 @@ export interface ConsumptionDataPoint<
   energyType: EnergyType;
   startDate: Date;
   endDate: Date;
-  consumption: Consumption<T>;
+  consumption: number;
   unit: T;
 }
 
@@ -22,27 +23,11 @@ export function pointIsUnit<T extends ConsumptionUnit>(
   return point.unit === unit;
 }
 
-export function assertUnitsOneOf<T extends ConsumptionUnit[]>(
-  point: ConsumptionDataPoint,
-  ...units: [...T]
-): asserts point is ConsumptionDataPoint<T[number]> {
-  if (!units.includes(point.unit)) {
-    throw new Error(
-      `Expected point to have one of the following units: ${units.join(", ")}`,
-    );
-  }
-}
-
-export enum EnergyType {
-  ELECTRICITY = "ELECTRICITY",
-  GAS = "GAS",
-}
-
-export async function getConsumptionData(
-  energyType: EnergyType,
+export async function getConsumptionData<T extends EnergyType>(
+  energyType: T,
   startDate: Date,
   endDate: Date,
-): Promise<Array<ConsumptionDataPoint>> {
+): Promise<Array<ConsumptionDataPoint<UnitsForEnergyType<T>>>> {
   const command = {
     TableName: env.CONSUMPTION_TABLE,
     KeyConditionExpression:
@@ -72,7 +57,7 @@ export async function getConsumptionData(
         startDate: parseISO(val.startDate.S!),
         endDate: parseISO(val.endDate.S!),
         unit,
-        consumption: parseFloat(val.consumption.N!) as Consumption<typeof unit>,
+        consumption: parseFloat(val.consumption.N!),
       });
     });
   }

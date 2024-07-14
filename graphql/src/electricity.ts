@@ -1,35 +1,26 @@
 import { formatISO } from "date-fns";
-import {
-  ConsumptionDataPoint,
-  assertUnitsOneOf,
-  pointIsUnit,
-} from "./data/consumptionData";
+import { ConsumptionDataPoint } from "./data/consumptionData";
 import { GridDataPoint } from "./data/gridData";
 import {
   Period,
   generateAllThirtyMinutePeriodsBetween,
 } from "./generatePeriods";
-import {
-  WATT_HOURS,
-  WattHourConsumption,
-  wattsToKilowattHours,
-  withUnit,
-} from "./units";
+import { WattHours, wattsToKilowattHours } from "./units";
 import { formatNumber } from "./util";
 
-export function electricityPoint({
+function electricityPoint({
   usage,
   emissions,
   missingData,
   mix,
 }: {
-  usage: WattHourConsumption;
+  usage: number;
   emissions: number;
   missingData: boolean;
   mix: Array<{ fuel: string; percentage: number }>;
 }) {
   return {
-    usage: formatNumber(wattsToKilowattHours(usage)),
+    usage: formatNumber(usage),
     emissions: formatNumber(emissions),
     missingData,
     mix: mix.map(({ fuel, percentage }) => ({
@@ -40,23 +31,20 @@ export function electricityPoint({
 }
 
 export function electricityPointFromData(
-  electricity?: ConsumptionDataPoint,
+  electricity?: ConsumptionDataPoint<WattHours>,
   grid?: GridDataPoint,
 ) {
   if (!electricity) {
     return electricityPoint({
-      usage: withUnit(WATT_HOURS, 0),
+      usage: 0,
       emissions: 0,
       missingData: true,
       mix: [],
     });
   }
-  if (!pointIsUnit(electricity, "WATT_HOURS")) {
-    throw new Error("Electricity data is not in watt hours");
-  }
   const consumptionKwH = wattsToKilowattHours(electricity.consumption);
   return electricityPoint({
-    usage: electricity?.consumption ?? 0,
+    usage: consumptionKwH,
     emissions: ((grid?.intensity ?? 0) * consumptionKwH) / 1000,
     missingData: electricity === undefined || grid === undefined,
     mix: grid?.mix ?? [],
@@ -65,7 +53,7 @@ export function electricityPointFromData(
 
 export function electricityPointForPeriod(
   { startDate, endDate }: Period,
-  consumptionData: Array<ConsumptionDataPoint>,
+  consumptionData: Array<ConsumptionDataPoint<WattHours>>,
   gridData: Array<GridDataPoint>,
 ) {
   const electricityLookup = new Map(
@@ -84,12 +72,10 @@ export function electricityPointForPeriod(
 
   const totals = consumptionData.reduce(
     (acc, point) => {
-      // TODO: Clean-up units here
-      assertUnitsOneOf(point, WATT_HOURS);
       const usage = point.consumption;
       const consumptionKwH = wattsToKilowattHours(usage);
       const grid = gridLookup.get(formatISO(point.startDate));
-      acc.usage = withUnit(WATT_HOURS, acc.usage + usage);
+      acc.usage += usage;
       acc.emissions += (grid?.intensity ?? 0) * consumptionKwH;
       grid?.mix.forEach(({ fuel, percentage }) => {
         acc.fuelUsage[fuel] =
@@ -98,14 +84,14 @@ export function electricityPointForPeriod(
       return acc;
     },
     {
-      usage: 0 as WattHourConsumption,
+      usage: 0,
       emissions: 0,
       fuelUsage: {} as { [fuel: string]: number },
     },
   );
 
   return electricityPoint({
-    usage: totals.usage,
+    usage: wattsToKilowattHours(totals.usage),
     emissions: totals.emissions / 1000,
     missingData: missingConsumptionData || missingGridData,
     mix: Object.entries(totals.fuelUsage).map(([fuel, usage]) => ({

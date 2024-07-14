@@ -7,7 +7,7 @@ import { EnergyPeriod, Energy, Resolvers } from "./generated/graphql";
 import { buildSubgraphSchema } from "@apollo/subgraph";
 import gql from "graphql-tag";
 import { DateTimeResolver } from "graphql-scalars";
-import { EnergyType, getConsumptionData } from "./data/consumptionData";
+import { getConsumptionData } from "./data/consumptionData";
 import { generateAllThirtyMinutePeriodsBetween } from "./generatePeriods";
 import { getGridData } from "./data/gridData";
 import { formatISO } from "date-fns/formatISO";
@@ -16,6 +16,7 @@ import {
   electricityPointForPeriod,
   electricityPointFromData,
 } from "./electricity";
+import { EnergyType } from "./data/energyType";
 
 const typeDefs = gql`
   extend schema
