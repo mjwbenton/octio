@@ -18,7 +18,7 @@ import { formatNumber } from "./util";
 // Source: https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2023
 const NATURAL_GAS_EMISSIONS_FACTOR = 203 / 1_000; // kgCO2e/kWh
 
-export function gasPoint({
+function gasPoint({
   usage,
   emissions,
   missingData,
