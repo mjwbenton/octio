@@ -9,7 +9,7 @@ permissions:
 concurrency: production
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -37,7 +37,7 @@ jobs:
           OCTOPUS_GAS_DEVICE_ID: ${{ secrets.OCTOPUS_GAS_DEVICE_ID }}
   test:
     needs: deploy
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
